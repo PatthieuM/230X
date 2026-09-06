@@ -1,0 +1,11 @@
+,value
+seconds_with_arb,28.0
+fraction_of_day,0.0011965811965811966
+n_episodes,20.0
+mean_duration_s,1.4
+max_duration_s,6.0
+mean_profit_bps,0.1874854292997576
+max_profit_bps,1.1807811959907433
+mean_tradable_eur,1273168.5734188205
+max_tradable_eur,3000000.0
+total_profit_usd_if_every_second,678.142808709473

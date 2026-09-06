@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "job_id": "XNAS-20260906-89NL7QY6DV",
+    "query": {
+        "dataset": "XNAS.ITCH",
+        "schema": "mbo",
+        "symbols": [
+            "GPRO",
+            "AAPL"
+        ],
+        "stype_in": "raw_symbol",
+        "stype_out": "instrument_id",
+        "start": 1577664000000000000,
+        "end": 1577750400000000000,
+        "limit": null,
+        "encoding": "dbn",
+        "compression": "zstd"
+    },
+    "customizations": {
+        "pretty_px": false,
+        "pretty_ts": false,
+        "map_symbols": false,
+        "split_symbols": false,
+        "split_duration": "day",
+        "split_size": null,
+        "packaging": null,
+        "delivery": "download"
+    }
+}

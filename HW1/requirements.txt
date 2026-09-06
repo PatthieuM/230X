@@ -1,0 +1,7 @@
+databento
+jupyter
+matplotlib
+numpy
+pandas
+statsmodels
+
