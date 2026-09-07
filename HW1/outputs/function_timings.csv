@@ -1,0 +1,11 @@
+step,seconds
+1. load_databento_stocks,136.0221
+2. load_currency_data,316.1549
+3. minute_stats_all_instruments,1.2279
+4. price_series_returns_acf,0.648
+5. transaction_diagnostics_30min,0.291
+6. triangular_arbitrage,0.5286
+7a. plot_stock_liquidity,8.221
+7b. plot_fx_liquidity,9.479
+7c. plot_30min_variance_acf,5.4337
+7d. plot_transaction_acf,3.3923
