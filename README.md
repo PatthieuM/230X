@@ -1,20 +1,24 @@
 # MFE 230X
 
-Coursework repository for MFE 230X.
+Coursework repository for MFE 230X (High-Frequency Finance).
 
 ## Homework 1
 
-`HW1/` contains the complete, executed analysis for NASDAQ TotalView-ITCH and the supplied currency order/trade data:
+`HW1/` contains the complete, executed analysis of one NASDAQ TotalView-ITCH
+session (AAPL and GPRO, 2019-12-30, via Databento) and the two supplied EBS
+currency files (EUR/USD, USD/JPY, EUR/JPY, 2012-01-25).
 
-- the final self-contained notebook;
-- its original backup;
-- Databento MBO and MBP-10 downloads with support files;
-- the two supplied currency CSV files;
-- course instructions and discussion documents;
-- generated summary tables and figures;
-- the standalone pipeline source used by the notebook.
+- `MFE230X_HW1_solution.ipynb` — the single notebook: pipeline, tables, four
+  figures, timing, and the written observations. Self-contained (the pipeline
+  is inlined in one cell) so it can be uploaded to Datalore as-is.
+- `src/hw1_pipeline.py` — the same pipeline as an importable module. The
+  notebook checks that its inline copy matches this file when it is present.
+- `data/` — Databento MBP-10 and MBO downloads with their manifests, and the
+  two currency CSV files.
+- `instructions/` — assignment, FAQ, and discussion-session slides/transcript.
+- `outputs/` — generated tables (`*.csv`) and figures (`figures/*.png`).
 
-To reproduce the analysis:
+To reproduce:
 
 ```bash
 cd HW1
@@ -22,5 +26,6 @@ python -m pip install -r requirements.txt
 jupyter lab MFE230X_HW1_solution.ipynb
 ```
 
-The notebook expects to be run with `HW1/` as its working directory.
-
+Run the notebook from `HW1/` (it resolves `data/` and `outputs/` relative to
+the working directory). The full run takes about a minute on a laptop once the
+two Databento files are present; every step is timed inside the notebook.

@@ -9,3 +9,10 @@ max_profit_bps,1.1807811959907433
 mean_tradable_eur,1273168.5734188205
 max_tradable_eur,3000000.0
 total_profit_usd_if_every_second,678.142808709473
+one_tick_bps,0.1282866914992886
+seconds_with_arb_gt_1tick,13.0
+n_episodes_gt_1tick,11.0
+total_profit_usd_gt_1tick,547.5206273675408
+one_pip_bps,0.7676240137431378
+seconds_with_arb_gt_1pip,1.0
+total_profit_usd_gt_1pip,118.07994137057167
