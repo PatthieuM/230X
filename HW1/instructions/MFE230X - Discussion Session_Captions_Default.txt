@@ -1,0 +1,4270 @@
+[VINICIO DE SOLA] Okay, let's officially start.
+
+So welcome, welcome.
+
+Welcome to our second
+discussion session
+
+So like I mentioned yesterday,
+and like I mentioned in the
+
+announcement that I just sent,
+our main focus for today is
+
+first I need to cover a little
+bit of the review of the theory
+
+that you already covered in your
+first couple of weeks
+
+mostly because homework
+one, it is related to
+
+what that theory is.
+
+So I want to make sure that you
+make the correct statements and
+
+interpretations on the different
+results
+
+that you're going to find.
+
+And then after that, we're going
+to be discussing
+
+What homework one is.
+
+I'm gonna show you what it looks
+like.
+
+I'm gonna show you what exactly
+you are looking for,
+
+what exactly are we looking for,
+
+how exactly are we going to
+grade it,
+
+and I'm gonna also share the
+rubric of pretty much
+
+everything as we move forward.
+
+I want to make sure that
+everything is relatively clear
+
+as we move ahead.
+
+Okay?
+
+I'm also gonna share kind of like
+what was a good report.
+
+I want to make sure that
+you understand
+
+a little bit about what we're
+looking for in general,
+
+so that way there's
+no major issues.
+
+As you notice, I also postponed,
+if you will,
+
+the due date for homework one.
+
+So now homework one is not due
+this Sunday.
+
+It's due the next Sunday, okay?
+
+Given that it was yesterday that
+we had
+
+the first Databento
+discussion,
+
+it doesn't make any
+sense to have it for this
+
+weekend, so we'll move it
+for next weekend, okay?
+
+And so please check the
+announcement
+
+that I sent, like,
+10 minutes ago
+
+Everything is now there.
+
+I typically am a little bit more
+coy
+
+about providing dates because
+
+they are subject to change, but
+I know that we have
+
+a lot of students, a couple of
+part-time students.
+
+it's kind of like an interesting
+summer and whatnot,
+
+so I wanted to make sure that
+you know all the different dates
+
+and due dates as we go forward.
+
+Okay, so let's summarize the
+announcements.
+
+So I think I have it here.
+
+There you go.
+
+So I'm going to summarize this
+announcement first.
+
+So let me share my screen really
+quickly.
+
+So that way we're clear
+about what exactly am I saying.
+
+No? So, so this is clear,
+it's already been,
+
+as I say, recorded.
+
+So today, we're
+discussing Homework 1.
+
+Next week we'll have our
+first simulation, okay?
+
+It is Simulation Number 1.
+
+Simulation Number 1
+doesn't require any code.
+
+It's really you playing
+around with the simulator,
+
+So it's quite fun.
+
+And because it
+doesn't require any code,
+
+I'm gonna release the case
+study this Monday, okay?
+
+Now, that particular day,
+so next week, we'll start with
+
+probably around half an hour
+
+Of proper discussion session,
+so I introduce homework two.
+
+So second, homework two
+has certain aspects
+
+of volatility,
+which are very interesting
+
+to cover, and then we'll
+go into the simulation.
+
+Now, because it's a simulation
+that is mostly based on trading
+
+and price discovery,
+it is a simulation that
+
+I try to do only one
+
+Okay? Only once.
+
+Okay? Because the more I
+try to test it out,
+
+the more you learn
+about what they're
+
+doing, and then,
+you know, there,
+
+there are ways to game in the
+system.
+
+It's not that we have pure
+randomness in those simulations.
+
+So, we'll probably have one test
+session
+
+during the simulation,
+and then we can jump into it.
+
+And yeah, that's my expectation.
+
+Every year we spend like forty
+minutes debugging,
+
+making sure that everybody
+have access and whatnot,
+
+and then, well, whatever.
+
+We'll see. Okay?
+
+So whenever we have a
+simulation, plan for two hours.
+
+Even though I know
+that the sessions are
+
+based on ninety minutes,
+whenever there's simulation,
+
+because of all the testing and
+everything that we need to do,
+
+they take a little bit longer
+
+So next we will have
+simulation one.
+
+The week after, we're gonna have
+simulation number two.
+
+So simulation one, it's needed
+for homework two.
+
+Simulation two is needed
+for homework three.
+
+Then discussion session five,
+which will be on the
+
+17th of September, that is gonna be
+just a
+
+discussion of homework three.
+
+And then we're gonna have
+
+back-to-back simulations,
+
+simulation three and
+simulation four.
+
+These are all with respect to
+your
+
+final project.
+So the final project, you
+
+have a group simulation,
+which is simulation four,
+
+and you have an individual
+
+simulation, which is simulation
+number three.
+
+Okay? So as you say, half of
+this class
+
+is simulation,
+which makes it quite fun.
+
+And then our final
+discussion session is mostly
+
+a support session for you,
+helping you write the final
+
+project, because remember,
+the final project is presented
+
+during the final week
+
+But the report itself is not
+due until the end of week eight.
+
+So that gives you enough
+time to cover everything.
+
+So what are the new due dates?
+
+So we're very clear.
+
+So homework one is
+due, like I said,
+
+not this week,
+but for the next.
+
+That way you have more than
+enough time, you know, 10
+
+days to work on your homework.
+
+Homework two, it's gonna
+be due
+
+two weeks after that.
+
+But then homework three
+is right after it, okay?
+
+So we have kind of like
+a back-to-back in
+
+homework two and three.
+
+Three is a relatively
+easy homework.
+
+You're pretty much
+replicating a paper,
+
+so it shouldn't be a big deal.
+
+And we'll have the simulation
+results quite
+
+earlier, so that's why I'm going to have it
+back to back.
+
+Nevertheless, that's my guess.
+
+I think that homework three due date,
+as we see through
+
+the term and as you start
+pleading your case,
+
+we can move it a little bit if
+needed.
+
+But homework one and two are
+pretty much set in stone.
+
+I think we're giving you more
+than enough time,
+
+to work on those, okay?
+
+I haven't changed the assignment
+due dates yet,
+
+but I will do it
+if not after this session,
+
+probably tomorrow morning.
+
+So you'll see those new due
+dates
+
+Questions, comments,
+concerns about the logistics?
+
+I want to make sure that we're
+very clear about it, so that way
+
+all expectations are clear.
+
+Give you some time.
+
+I know people are
+shy in this class,
+
+so I want to make sure
+that if anyone has a
+
+question, you can ask.
+
+Fine. Okay, awesome.
+
+So, with that in mind...
+
+Okay, I see a lot of thumbs up,
+so I appreciated the feedback.
+
+So-
+
+A few things then in terms of
+what I want to do today.
+
+So first thing that I want to do
+today is discussing
+
+information asymmetry,
+because that's really what
+
+the first homework is all about.
+
+I think I mentioned last week
+that
+
+a lot of what high-frequency
+finance is, is understanding
+
+the microstructure of the book.
+
+We need to understand what
+it means to have a book.
+
+What is this idea of
+best bid, best ask?
+
+How exactly will a trade happen?
+
+So I want to make sure
+that we cover all of
+
+those different details.
+
+First, this is mostly based
+on what you discussed in class,
+
+so nothing new, but I'll
+give you my perspective.
+
+And mostly because that's
+what homework one is all about.
+
+Yes, there's going to be a lot
+of data cleaning, so you know,
+
+using pandas in general.
+
+But there's also a couple of
+things in terms of, I ask
+
+you to compute price impact,
+so I want to make sure that
+
+you know how to compute it.
+
+And there's also one
+question about, uh-
+
+I'm blanking out.
+
+Uh, triangular arbitrage.
+
+So I want to make sure that
+you also understand
+
+what that question means.
+
+Okay? So what is the
+main idea of
+
+asymmetry of information, okay?
+
+And why all of this idea
+of trading
+
+works at the end of the day?
+
+So wanna start with
+a simple model.
+
+Again, I'm just
+
+Retrading a few things that you
+already covered in class, but
+
+I'm going to give you
+my perspective.
+
+So let's start with a very
+simple model where there is
+
+an asset that we're trading.
+
+And remember,
+this is totally
+
+independent of
+whatever that asset is.
+
+It could be all the way from
+real estate, from a stock, from
+
+fixed income, from whatever.
+
+We have an asset where
+we know that there's
+
+a true value V, okay?
+
+It's very important.
+
+I know that there's
+a true value V, okay?
+
+Now, we also know that
+there's two possible prices
+
+of that particular asset.
+
+We either have a VL for low,
+which we're gonna call
+
+lower price, and there
+is a higher price, VH.
+
+Okay? These are two possible
+scenarios where each of
+
+those have equal probability,
+meaning that it can either
+
+be VL or VH, and we have a
+spread between those two.
+
+Okay? They cannot be the same.
+
+So there is a true value.
+There's two possibilities.
+
+So in a way, kind of like a
+binomial tree, aspect of it.
+
+Okay?
+
+Now, that's fine.
+
+If we're using this for pricing,
+for example,
+
+if we're doing like a single
+step option price,
+
+you create your binomial tree,
+you put the probability
+
+and heck it.
+
+We have a price.
+
+No, it's literally the
+average of the two prices.
+
+But there's something else
+what happens in the market,
+
+and this is where we're
+starting to introduce the
+
+concept of microstructure.
+
+When we start to introduce
+this idea of, hey,
+
+there are multiple people
+trading in the market.
+
+So we'll have one
+type of trader,
+
+which is what
+we're gonna call the
+
+informed traders, okay?
+
+And this is
+important information.
+
+Informed traders are...
+
+Again, you can-
+
+Define it however you like.
+
+Are they informed
+because they have better
+
+quantitative methods?
+
+Are they informed because
+they have better researchers?
+
+Are they informed because
+they're doing inside trading?
+
+Probably a little
+bit of those three.
+
+Okay? But they know the
+price.
+
+They know if it's VH,
+they know if it's VL.
+
+Okay? They know one of
+them.
+
+Funny enough,
+this is similar
+
+to what homework
+simulation one is.
+
+So the idea of price discovery,
+it's mostly based on this.
+
+So there's a couple
+of hints
+
+of what homework simulation
+one will look like.
+
+Okay?
+
+Uh, now, on the other hand,
+we're going to have what
+
+we call noisy traders
+or uninformed traders.
+
+Again, the uninformed traders,
+it's not that they're suckers,
+
+so it's kinda like an
+understanding when I
+
+always think about
+trading, you know,
+
+there's the one
+that lose the game,
+
+is that not everybody
+enters into a market
+
+because they need to
+get the best price.
+
+Okay? So that's what we
+call noisy traders.
+
+Think about this
+in multiple ways.
+
+Let's suppose
+you're a CFO, um, on
+
+I don't know, you're a CFO on an
+energy company, okay?
+
+And your goal is like, "Hey,
+there's this
+
+freaking war in Iran."
+
+There's a lot of exposure to oil
+prices.
+
+Can I buy a particular future or
+forward
+
+or whatever to try to hedge that
+price?
+
+Because your objective is just
+hedging or your objective is
+
+certain type of protection,
+you don't really care if
+
+you get the best deal.
+
+Okay? So that's what we
+call uninformed.
+
+Maybe the idea of the trading
+is not about finding the
+
+right value, it's just
+about filling something else.
+
+Okay? But most of the time we
+call noisy traders.
+
+We don't know if they go one
+direction, if they go the other.
+
+But they're gonna be buying
+and selling with equal
+
+probability at any price.
+
+Okay? So, we're gonna assume that
+there's a certain ratio of
+
+informed traders in the market.
+
+Okay? That's the idea
+of these initial models
+
+So based on that asymmetry
+of information, again,
+
+one uninformed trader
+that they do whatever,
+
+and then one informed
+trader that they know
+
+what the price is.
+
+What exactly will happen if we
+let them trade?
+
+Okay? So if we let them trade,
+the informed traders will
+
+move in a particular direction
+
+They know that because there's
+two possible values, VH and VL,
+
+and if they know that V is equal
+to VH, meaning that if they
+
+know that the price will be
+higher, they will try to buy.
+
+If they know that V will be
+low, then they will try to sell.
+
+So in a way, they're kind of
+like
+
+depending on where they think
+the value...
+
+Well, not where they think,
+where they know the price
+
+will be, they're gonna take different
+side of the trade.
+
+Sometimes they're gonna buy,
+sometimes they're gonna sell
+
+And then you have the
+uninformed traders on the
+
+other hand, that they're
+just buying, like I said.
+
+We'll call it uninformed,
+so they're just buying, okay?
+
+With equal probability.
+
+Sometimes they buy, sometimes
+they sell
+
+irregardless of the
+price or regardless
+
+of the price, okay?
+
+So what happens
+with this market?
+
+Who makes the
+deals happen, okay?
+
+'cause remember,
+at the end of the day,
+
+and this is kinda like
+the interesting thing about
+
+this market, is like there have
+to be an exchange.
+
+So there has to be
+someone that makes that
+
+exchange happens, okay?
+
+So-
+
+Because the dealer at
+the end of the game is,
+
+at the end of the day,
+
+sorry, is just trying
+to provide a market.
+
+They don't really,
+they're not that
+
+interested into what
+the real value of V is,
+
+but they do have to
+make a guess on it.
+
+'cause at the end,
+they are providing that value.
+
+They are providing
+the, not the va-
+
+they're providing
+the trades, they're
+
+providing the market.
+
+So what the dealer will do
+is say, "Okay, what's the
+
+best thing that I can do?"
+
+Look at the data
+
+And based on the data,
+I can make an informed
+
+decision of what should
+be the real price of V,
+
+and then that allows me to give
+the liquidity in the size
+
+that I need to give liquidity.
+
+Okay? So the main idea here is
+that the value in the eyes of
+
+the dealer in a certain
+time T minus one will be
+
+equal to an expected value
+
+Okay, what should be the
+expected value of that asset
+
+or whatever it is, V,
+given the information.
+
+And what is the information
+that the dealer has?
+
+The order flow, okay?
+
+The order book, the book,
+whatever had happened.
+
+Everything that can come
+in and can come out,
+
+that is information that
+the dealer has, okay?
+
+And based on that information,
+we want to make the
+
+best price, okay?
+
+So you see that in
+a simple scenario,
+
+because we are
+assuming a binary
+
+A state of the world.
+
+There is going to be, if it's an
+expectation value,
+
+it's going to be a little bit of
+a simple binomial distribution.
+
+So we're going to have a
+probability that we're going to
+
+call theta times VH, meaning
+what's the
+
+probability that I believe.
+
+So this is a belief, but we're
+going to put it
+
+in terms of probability.
+
+How probable it is that I
+believe that the asset will
+
+be at the high price, and one
+minus that,
+
+that is the low price.
+
+Okay, like again,
+you're seeing the flow,
+
+you're seeing the book,
+
+you're seeing the imbalance,
+you're seeing everything
+
+that happens there,
+and understanding how
+
+the market evolves,
+you can make a guess on,
+
+"Hey, what is my price?"
+
+So even though the model
+itself is relatively simple,
+
+what we can do with this is
+saying, "Okay, if my idea or
+
+if my belief depends on what
+I'm observing in the market-
+
+I can compute based on this
+very simplistic model what
+
+should be the probability on
+the dealer's mind of buying.
+
+Again, remember I say
+probability is how likely
+
+I think the price will be
+the high price and how
+
+likely it is that it's
+gonna be the low price.
+
+Okay? So we're gonna call
+that theta,
+
+and we say the dealer
+believes
+
+that the asset is worth V H.
+
+It's gonna be T minus one
+
+And this belief updates every
+time that we see a new trade.
+
+Okay? And this is where
+things get interesting.
+
+That's the idea
+of the order flow.
+
+Not only I'm seeing the
+book, I'm also seeing
+
+different trades.
+
+So the main idea of this model
+is saying, "Hey,"
+
+the probability of me buying
+or the probability of
+
+of me thinking that the price is
+VH,
+
+it's based on—
+
+Sorry, based on what the
+previous trade was.
+
+So if the previous trade was a
+buy, again, you can do the math,
+
+the math doesn't really matter
+that much, but what it will
+
+get you is that we'll update
+the probability upwards.
+
+Okay? So if I see a buy
+as a transaction,
+
+then I will upgrade,
+so it's a Bayesian process.
+
+I'm gonna upgrade my probability
+that the next one is a buy
+
+A little bit more,
+a little bit higher.
+
+I wanna increase it.
+
+If I see that there's a
+sell, then the opposite.
+
+I'm gonna lower the
+probability that it is
+
+a sell or that it's a buy
+because it needs to go down.
+
+Now why is this interesting in
+terms of
+
+the information that we have?
+
+This depends exclusively
+on alpha, meaning that
+
+ratio of informed traders
+
+The more I know that the market
+is a specialized market, okay?
+
+So for example, MBS is a good
+example.
+
+So MBS can be traded
+in open market.
+
+Again, not that liquid,
+but they can trade
+
+in the open market.
+
+And MBS are highly, highly
+specialized.
+
+So the ratio of informed
+traders in that market
+
+is relatively high
+
+Compared to, I don't know,
+crypto to give an idea.
+
+What's the value of crypto?
+
+We can have a big discussion.
+
+It's either zero or infinity.
+
+No, we don't know.
+
+But in that case,
+really the informed part
+
+becomes less like, okay,
+who knows what the game is
+
+played, and then you can have
+like a small value of alpha.
+
+So depending on that, you're
+going to be updating the beliefs
+
+of how the market will trade.
+
+Okay? And this kind of makes
+sense, no?
+
+If I see buy, buy,
+buy, buy, buy,
+
+there's pressure
+for the buy side.
+
+If I see sell, sell, sell, sell,
+the pressure for the sell side.
+
+Okay? That's why typically
+when you see trading,
+
+there are these mini runs of
+things going up to a certain
+
+degree, then things go down.
+
+That's why you have that
+kind of movement.
+
+Sure. Again, because this is all
+based on a value alpha
+
+and a value theta, we can
+easily plot this.
+
+So we have this
+
+Tables, nothing
+important really,
+
+but just to kind of
+put the different
+
+tables on your hands.
+
+So then the idea
+comes like this.
+
+Okay, perfect.
+
+We know how to update
+my probability
+
+based on the trades,
+based on the order flow.
+
+How can I make money?
+
+As the dealer, remember,
+as a market maker, as the
+
+one that is putting the
+means for trades
+
+to happen, okay?
+
+So it all depends on how will
+I put my bid and ask, okay?
+
+So
+
+If I know that there's
+gonna be a buy, remember,
+
+when you buy, you hit the ask.
+
+When you sell, you hit the bid.
+
+Remember that process, no?
+
+So this is something
+very important.
+
+Whenever we say trade,
+you notice that I'm
+
+using this idea of
+buying and selling, okay?
+
+But in a trade,
+there is a buyer,
+
+but there is also a seller
+
+So how do I know which
+one is the buyer and
+
+the seller of a trade?
+
+That was a question, by the way.
+
+So if there's always
+two counterparties in
+
+a trade, how do I know
+who buys and who sells?
+
+What does it mean then to be a
+buyer?
+
+Yeah, sorry. Go.
+
+[ALAN YU] So, if you're buying,
+then you're hitting the ask.
+
+And if you're...
+
+Sorry, if you're buying,
+you're hitting...
+
+Yeah, if you're buying,
+you're hitting the ask,
+
+and if you're selling,
+you're hitting the bid.
+
+So
+
+Yeah, I'm telling you,
+I'm just, yeah
+
+[VINICIO DE SOLA] That's true. So there's a couple of ways
+that that's determined.
+
+Now, and this is related to
+the data that you're going to be
+
+using for your homework one.
+
+Whenever you decide a trade,
+we typically say that
+
+there is an aggressor
+and an aggressor party.
+
+The aggressor party is the one
+that is initiating the trade.
+
+Okay? Now, to put it in
+perspective
+
+of what you're going to be
+covering
+
+and also a few things
+that we're going to
+
+deal in the simulations,
+
+that is the reason why,
+in a simplified manner,
+
+we have two types of orders.
+
+We have market orders
+and limit orders.
+
+Okay? So what is a market order?
+
+[ALAN YU] Um, a market order is one
+where you are like, I just want to
+
+fill it right now, you know,
+whatever the market price is.
+
+Whatever the price is
+I can take based on my
+
+order, I'll just take it.
+
+And a limit order is
+I want to fill it at this price.
+
+[VINICIO DE SOLA] Okay.
+
+Yes, but that's true.
+
+Perfect, Jean.
+
+That's a perfect
+description of the two,
+
+but let's go a little
+bit further.
+
+When I put a market order,
+as you mentioned, yes, the
+
+idea is that I'm being, say,
+hey, whatever the market is.
+
+But in the market order,
+you have direction.
+
+Are you buying at a
+market order or are you
+
+selling at a market order?
+
+So you're clearly the aggressor.
+
+I need this, therefore,
+I'm gonna go to the book
+
+and get whatever I can.
+
+That's what it's called, a
+market.
+
+We do it at the same time.
+
+And now, as you mentioned,
+if I put a market buy, I'm
+
+hitting the ask of the book.
+
+Um, if I put a market sell,
+I hit the bid of the book.
+
+A limit order,
+on the other hand,
+
+is not that
+
+Again, yes,
+you're gonna
+
+try to make the transaction only
+
+if the price comes
+to a certain value,
+
+but it's a much more
+passive order.
+
+It's a passive order because in
+theory,
+
+you're adding liquidity
+
+To the market versus a
+market order, besides
+
+calling an aggressor,
+we also say that you're
+
+subtracting liquidity of the
+market because you're taking
+
+whatever the book provides.
+
+Okay?
+
+So that's why this is important.
+
+Even though in a trade there's
+two counterparties,
+
+it's clearly who is the
+aggressor and who is not,
+
+and the aggressor
+determines then the size
+
+The side, okay?
+
+If I'm buying as the aggressor,
+it's a buy trade.
+
+If I'm selling as the aggressor,
+it's a sell trade, okay?
+
+So based on that idea,
+because that's what you know,
+
+that's the order flow that
+you're getting from the market,
+
+then you can do this analysis
+and say, "Hey, if I'm buying,"
+
+meaning if I know that the
+pressure comes from the
+
+buy side, as the dealer,
+as the market maker,
+
+I'm gonna set an ask,
+because remember,
+
+you always hit the ask,
+that wants to be greater
+
+than what I think the asset
+is worth, but it has to be
+
+less than V H, okay?
+
+Meaning that if buying,
+so I put my price, and again,
+
+that A_T is gonna be a price
+that is a little bit more than
+
+V_T minus one, which is the
+value that
+
+we compute here, okay?
+
+Based on my probabilities.
+
+But it has to be less than V_H,
+that the final value.
+
+It has to be there
+in the middle.
+
+So what's the idea here?
+
+If I put that as
+the price, okay?
+
+And the informed trader
+
+Is the one that hit
+that ask, I lost money.
+
+Why? Because now I know that if
+the informed trader hit me,
+
+they know that the price was
+VH, but I was putting the
+
+ask lower than that value.
+
+On the other hand, if I get an
+uninformed trader to buy, okay?
+
+What that means is say, "Oh, I
+do get that difference," because
+
+that uninformed trader doesn't
+really know what the value is.
+
+They just hit it by
+
+Chance, so I am getting money
+out of it.
+
+Okay? So it's very important.
+
+Now, when you do market making,
+the main idea is that you're
+
+trying to reap the benefit
+from the uninformed traders,
+
+but you never know
+which one is which.
+
+But this is on average
+what's going to happen.
+
+Okay? So that allows me to,
+based on that simple idea,
+
+and to create an equation that
+allows me to provide based on
+
+my views of what the value
+is, what should be the bid,
+
+and what should be the ask.
+
+Okay?
+
+And like I said,
+it all depends on those
+
+probabilities, and once again,
+it depends on that value alpha.
+
+So the more the informed
+traders, the spread narrows.
+
+The more uninformed
+traders, the spread widens.
+
+Yep.
+
+So that's relatively simple.
+
+It's a model that it's really
+all about understanding
+
+how the order flow
+
+Gives information
+for trades to happen.
+
+It's this idea of pressure
+in both directions.
+
+But now, what happens when
+I add size to the model?
+
+And this is a little bit,
+this is where we're getting
+
+closer to what homework one is
+really looking for you to try.
+
+Okay?
+
+Because here we are assuming
+that we're only setting up
+
+the price, so the order
+could be of one unit or it
+
+could be for a million units.
+
+But we know that typically
+there is a limited size of what
+
+I can sell at a certain price.
+
+Okay?
+
+So when we add size to
+the model, and we're
+
+also gonna simply...
+
+Sorry, we're gonna remove
+some of the simplicity
+
+of the previous one.
+
+The previous one gave
+us good intuition.
+
+The spread depends on
+the informed trader.
+
+That's good intuition.
+
+The dealer is there to try to
+cater the whole market,
+
+but we know that if they trade
+with informed, they're losing.
+
+If they trade with uninformed,
+they're winning.
+
+So hopefully,
+similar to a casino,
+
+we expect that there are
+more uninformed
+
+trades than informed,
+so I do have an edge.
+
+That's how the market maker
+makes their money.
+
+But now, in this model,
+we're gonna
+
+Relax a few of those constraints
+or assumptions.
+
+Okay? So first, let's assume
+
+that we know that there's a
+price.
+
+But we're gonna keep it
+relatively uncertain.
+
+Okay? So again, uncertain in the
+sense that as the market
+
+maker, I don't really care
+about what the asset is.
+
+I'm just providing market.
+
+Okay? So when I say...
+
+Again, for simplicity, sure,
+normal distribution with
+
+a certain P, which is the price
+average,
+
+and a certain volatility.
+
+Sure.
+
+And again, we're still gonna
+keep two types of traders.
+
+That's pretty much the
+key of all of these
+
+market-making models.
+
+The informed traders,
+they know the price V
+
+Okay? So the true value may be
+uncertain, but like I said, the
+
+informed trader knows what V is.
+
+Either for whatever
+means, they know it.
+
+Okay? And they will decide to
+sell or buy a certain value,
+
+which we're gonna call quantity.
+
+Okay? That's the size of their
+trade.
+
+On the other hand,
+the uninformed still,
+
+they just need something
+from the market,
+
+So they're gonna trade
+either way.
+
+That's why they're
+called uninformed,
+
+and they're gonna sell
+or buy also randomly.
+
+Okay?
+
+Now we're going to call that X
+with also like a normal
+
+distribution because they
+can buy or sell, and we're
+
+assuming they're uninformed.
+
+That's what they mean is around
+zero, meaning that on average,
+
+they buy and sell at
+the same probability.
+
+And again, we do have certain
+
+spread of how likely it
+is that they're on one
+
+side of the trade or on
+the other side of the trade.
+
+Okay?
+
+And same thing,
+we have our dealer.
+
+The dealer is putting
+different orders, and there
+
+is a clear order imbalance.
+
+Okay? Remember, when we think
+about the order imbalance,
+
+it's the difference between
+the two sides of the book.
+
+So, you know,
+order imbalance when
+
+we think about our book.
+
+We're gonna put our stairs.
+
+You can add everything
+that is here in volume,
+
+everything that is
+here in volume.
+
+The difference between
+these two sides is what we
+
+call the order imbalance.
+
+Okay?
+
+And that order imbalance,
+you see that is determined
+
+by two kind of like values, no?
+
+First, it's determined by
+how much is traded by those
+
+uninformed traders, which again,
+it can be positive or negative,
+
+and then the quantity that the
+informed traders is gonna
+
+take out from the market.
+
+Okay? And for simplicity's sake
+in this case,
+
+let's assume that the
+quotes are prices for
+
+trading all of O units.
+
+So we don't have
+the book itself,
+
+we have a simple bid
+and ask both with size.
+
+That's a simplification
+at the end of the day.
+
+So what exactly
+should I do here?
+
+If we assume now because we have
+less views or less understanding
+
+of what the market is
+because of
+
+the randomness associated
+with it
+
+as the market maker, I say,
+"Hey, the best that I
+
+can do is try to avoid a loss."
+
+So I'm going to provide
+an expected value
+
+Equals zero.
+
+So I'm gonna... That's the idea.
+
+Now I'm gonna try to,
+the dealer should make zero
+
+profits, so the price of those
+orders should be the expected
+
+value of V given the order book.
+
+So again,
+given the whole order book.
+
+The informed trader wants to
+maximize profits given P0 by
+
+deciding how much to trade.
+
+Meaning that if I know
+what the price is,
+
+I can maximize my
+profit knowing or
+
+looking at the order.
+
+So that means that the dealers
+would have a pricing function.
+
+That is, depending of the-
+
+Real price or the expected
+price of the value plus a
+
+certain lambda, which it
+depends exclusively on the
+
+volatility of the informed and
+uninformed trader,
+
+multiplied by the
+size of the order.
+
+Okay?
+
+So what is important about this
+model is that based on that,
+
+I can do a couple of equations
+and blah, blah, blah, which
+
+again, it's not really part of
+what we need, and I wanted to
+
+look at the final result.
+
+What we're saying here is
+that the informed trader will
+
+always buy a certain quantity,
+and that certain quantity is
+
+a value beta, which we're
+gonna compute now, of the
+
+real value minus the price.
+
+Because remember,
+the informed trader
+
+always wins.
+
+That's why they're informed.
+
+So of course, this is the amount
+that they're gonna
+
+Win on that element.
+
+But you see that it depends
+of two different parameters.
+
+First parameter is this lambda.
+
+And this lambda, as you notice,
+is the division of
+
+two volatilities.
+
+The volatility of the
+value of the stock,
+
+but also the volatility
+of the uninformed traders.
+
+Okay? So what that says is the
+more uncertain the price,
+
+me as the market maker
+should make the quote
+
+wider to avoid losing money against the
+uninformed trader.
+
+The higher the variance
+on uninformed trading,
+
+so the more noise,
+if you will, you have,
+
+you need to tighten the quotes.
+
+And the informed traders need to
+also care about
+
+the uninformed trader because
+the higher the variance of
+
+the uninformed trader, the
+more the informed trader can
+
+sizes up, can trade more.
+
+Okay?
+
+So what this model is trying
+to say is that during this
+
+assumption of two types of
+traders and a value that
+
+I don't know what it is,
+but I know its distribution,
+
+I'm able to come up with
+a way of building the
+
+book that is determined by
+the behavior of
+
+the trades that we're seeing.
+
+Okay? Now, that is the
+intrinsic model,
+
+assuming that everything
+is known, very
+
+beautiful to write and derive
+
+How do we do this empirically?
+
+What is this information that
+we're trying to say?
+
+This is something that we
+call as the price impact.
+
+It's that value lambda.
+
+So what is the idea
+of the price impact?
+
+If I compare the two prices,
+these are traded prices,
+
+not mid-prices, traded
+prices of Pt plus one,
+
+meaning the price of
+the next trade minus the
+
+price of the current trade
+
+And I know that there's a
+certain volume, that's what
+
+Q is of the next trade.
+
+That lambda,
+which is come
+
+from a regression,
+so this is something
+
+that you can compute
+using linear regression
+
+because we can do it through
+linear regression, tells me how
+
+much impact the size
+of the order has in
+
+a particular market.
+
+Okay? So let me explain what--
+
+why is this important as a
+metric
+
+If the price impact is high,
+okay, if that lambda is high,
+
+what we're saying is that
+the difference in prices,
+
+it's gonna depend quite
+a lot of the quantity
+
+that is being traded.
+
+Okay? That's what I say.
+
+Whatever quantity has
+a big impact on the
+
+difference in price.
+
+If lambda is small-
+
+Okay? Which again,
+lambda can be
+
+small if...
+
+What happens if there's not a
+lot of noise in the market or
+
+if there's a lot of varia-
+sorry, if there's small
+
+variability on the asset itself,
+you can size up more.
+
+You can add more to Q and the
+change in
+
+the price is less.
+
+Okay? This matters when you're
+building big trades.
+
+Okay, like, oh,
+I need to trade
+
+a million dollars.
+
+Okay, how much is the price
+impact of that particular stock?
+
+If it's big,
+you know that
+
+you're probably gonna
+change the price as you
+
+do your trade, so you're
+gonna have some slippage.
+
+If lambda is small, that
+probably means that
+
+you may be able to get away
+with a million dollars without
+
+changing too much the price.
+
+Okay?
+
+So it's a very important
+metric to understand,
+
+and it depends of the
+trading information.
+
+It's literally empirically, no?
+
+So depending of your stocks,
+some stocks may have high
+
+lambdas, other stock
+may have low lambda.
+
+Okay? Questions, comments,
+concerns about this
+
+simple model, but why... how can
+we use it?
+
+Awesome
+
+[XIN YANG SOO] Excuse me.
+
+[VINICIO DE SOLA] Yes, please.
+
+[XIN YANG SOO] So is the lambda in the
+dealer pricing function,
+
+the same as the empirical function
+in the last row?
+
+Is this two lambda the same or?
+
+[VINICIO DE SOLA] Great question. So the idea is
+that the lambda that is in the
+
+equation is assuming
+that you know everything.
+
+However, you don't.
+
+So the best that you
+can do is estimate it,
+
+and the way that we estimate
+it is running a regression
+
+And because the regression
+depends on how the price of
+
+the stock evolves over time,
+we write it this way.
+
+So if we want to be
+
+precise about it,
+and it's good to
+
+be precise about it,
+this lambda is really
+
+an estimate of this one.
+
+Okay?
+
+[XIN YANG SOO] Okay, thanks.
+
+[VINICIO DE SOLA] Yeah, good question.
+
+Any other question?
+
+[ALAN YU] Excuse me.
+
+[VINICIO DE SOLA] Yep.
+
+[ALAN YU] What is the interpretation
+of using one
+
+over two in lambda and beta?
+Because they omit each other
+
+[VINICIO DE SOLA] Well, so the two there,
+that's a good question.
+
+So the two comes mostly
+because this is depending on
+
+volatility, and when you're
+trying to maximize profit,
+
+there's going to be a square.
+
+So when you compute
+the derivative,
+
+that's where the two comes down.
+
+So it's just part of the mathematics
+of the equation.
+
+But I wouldn't mind too much
+about the two.
+
+Okay?
+
+Just a byproduct of the
+multiplication.
+
+But yeah, good question.
+
+Valid question, for sure.
+
+Okay, so with that
+out of the way,
+
+let's jump into
+homework one.
+
+So what is homework one?
+
+Before I go to the
+instructions, let's read it out.
+
+Okay? So this is homework one.
+
+Again, don't worry
+
+about the due dates.
+
+Like I said, it's already pushed
+for another week.
+
+So the idea goes like this.
+
+The goal of this homework
+is to get familiar with
+
+the data that we have.
+
+Okay? So I want you to choose two
+stocks of different sizes or
+
+different market capitalization.
+
+Okay? This is where Databento
+comes into play.
+
+Okay, that's why you were
+there yesterday with Aaron.
+
+Okay? So all the data
+extraction,
+
+go to your Databento and then
+
+decide which one to use
+
+Now, we want you to
+use a single day.
+
+Okay? We're doing a single day.
+
+Um, we'll get into doing like a
+month of trading later,
+
+but one single day, depending on
+the size and
+
+the liquidity of a stock can be
+a lot.
+
+Okay? So for two stocks, you
+can...
+
+You wanna choose a
+particular day, whatever.
+
+Choose the same day for both,
+but it can be any day.
+
+Okay? And then we're gonna have
+currency pairs.
+
+Now, for the currency pairs,
+this is mostly, you notice
+
+that Databento has
+a lot of information.
+
+It even has information
+about options.
+
+It doesn't have information
+about currencies.
+
+So for the currency piece
+of homework one,
+
+we are giving you the data,
+so I want to make sure
+
+that that's clear.
+
+Let me make it a quick
+second here.
+
+There. No, not here.
+
+Here, yes. So if you go to
+your files,
+
+Eventually.
+
+There, finally.
+
+And you go to
+
+Assignments.
+
+Again, eventually.
+
+I don't know what's
+going on here.
+
+There you go.
+
+So yeah, in your case, you're
+not gonna see a lot of this.
+
+You're only gonna be
+seeing homework one
+
+and the final project.
+
+Homework two and
+three, I stopped.
+
+I unpublish them because
+they need something else
+
+that I'm gonna add later.
+
+But what is important is
+that there is a folder
+
+called Data Currency, okay?
+
+So in this folder,
+you're gonna have the three.
+
+Currencies that we
+discussed in the homework.
+
+And you notice that I'm
+providing the
+
+trade of a single day.
+
+So these are all the trades and
+the order book associated.
+
+Okay, so I'm giving you both,
+
+giving you the trade and the
+order.
+
+Okay? So for the currencies,
+I'm giving you that information.
+
+Okay, it's gonna be EUR/JPY.
+
+Euro dollar and dollar yen.
+
+And for the two stocks, you're
+gonna be using Databento.
+
+Whatever two stocks,
+the only thing is try
+
+to select different
+market capitalization
+
+or different liquidity.
+
+You decide, okay?
+
+Um, you can...
+
+You know, you, you choose.
+
+So what exactly are
+you gonna be computing?
+
+You're gonna be bringing the
+information of all trades.
+
+You're gonna be bringing the
+information of the order book
+
+And you want to compute
+certain statistics.
+
+Okay, so it's mostly
+about statistics.
+
+So for each minute,
+what is the dollar
+
+trading volume?
+
+Then you want to compute per
+minute what's the number of
+
+trades and number of
+orders per minute.
+
+You want to compute your open,
+close, high,
+
+and low per minute.
+
+You want to compute
+your VWAP per minute
+
+You want to compute
+BBO and depth.
+
+We'll decide
+
+what this is
+per minute.
+
+You're also going to be
+computing depth at twice
+
+that day's average spread.
+
+I'll explain what that
+means in a second.
+
+You're then going to compute
+your five seconds price impact.
+
+This is the regression
+that I just mentioned.
+
+And in this case, kind of
+like to avoid or
+
+to simplify the size,
+we're going to be using
+
+like a plus or minus,
+depending if it is a
+
+buy or if it's a sell
+
+Then you're going to be
+computing midquotes
+
+and transaction price series.
+
+We'll see what this means.
+
+We're going to be computing
+log returns both in the midquote
+
+and in transaction price.
+
+This is to understand that,
+
+remember that we had this
+discussion last week.
+
+What's the price of a stock?
+
+Well, the price of a stock is
+either the latest traded
+
+price or the mid price,
+what we call the midquote.
+
+Both are valid information,
+so we want to look at it
+
+if in the log land or
+in the return land,
+
+are they different?
+
+So that's kind of like the
+analysis that we want to do.
+
+So you're gonna be computing
+midquote return
+
+and transaction return series.
+
+You're gonna be computing
+realized variance for both the
+
+midquote and the transaction,
+and you're gonna be
+
+computing autocorrelations.
+
+We want to see how this series,
+you know,
+
+can we forecast them?
+
+Are they forecastable?
+
+You know, what exactly is the
+autocorrelation?
+
+And the most important thing, in
+terms of,
+
+for the report part, because
+this is all data
+
+analysis, the one that
+is quite fun is that for
+
+the currency pairs, we want you
+to try to see
+
+how many times in a single
+day can you spot triangular
+
+arbitrage opportunities.
+
+I want you to determine how many
+times, what's the frequency,
+
+what's the duration, and how
+much could you trade
+
+if you spot those triangular
+arbitrage opportunities.
+
+And then again, some
+
+Some information.
+
+So this is kind of like some of
+the plots and blah, blah, blah.
+
+Okay? So that's what
+the assignment is.
+
+It's a relatively
+mechanical assignment.
+
+It's mostly getting familiar
+with Databento as an API,
+
+the data that we're
+providing you via each
+
+Sorry, via EBS, which is
+the currency data.
+
+It will have different
+schema than Databento.
+
+So the cleaning process from
+the data that you come from
+
+Databento is different from
+the data that we're providing.
+
+The way that the data is
+normalized is different.
+
+So again, like I said,
+it's just a little bit of data
+
+analytics and getting familiar
+with messy data 'cause, again,
+
+even though financial data
+we'd consider one of the
+
+cleanest, when you go to
+microstructure and to the
+
+book, it can be quite messy.
+
+Okay, so that's really
+the idea.
+
+So what exactly are the
+instructions of homework one?
+
+So like I mentioned, for stock,
+you want to use Databento.
+
+For the data,
+I'm gonna share a
+
+starter notebook of
+how to use Databento,
+
+Over the weekend.
+
+I just need to build it.
+
+I didn't have time
+today because of work.
+
+But I'll share it.
+
+I'll send an announcement
+once it's ready.
+
+I'm gonna probably have it
+in Datalore, so that
+
+way all of you can see it
+
+And that starter notebook will
+probably have a little bit about
+
+the API and how to use it.
+
+As I mentioned yesterday,
+they sent an email that
+
+the batch API changed
+a couple of things,
+
+so I want to make sure
+that I give you the latest
+
+version of how to use it.
+
+Again, if you can figure it out,
+you don't need to wait for it.
+
+I know that we have very good,
+
+computer science and
+software developers
+
+in this class, some of you even
+
+better than me,
+so you don't need
+
+to wait for me.
+
+But if you're not that used
+to APIs and whatnot, you can
+
+wait for the starter notebook.
+
+And then for the currency,
+I already explained,
+
+those are the two files
+that you want to use.
+
+Okay? So what is the idea
+of this assignment?
+
+What are you delivering?
+
+Okay? This is the deliverable.
+
+A report and code.
+
+Okay? I think I mentioned
+it last week.
+
+In this class, we're
+gonna separate the two.
+
+You need to submit a
+deliverable, a report,
+
+and then you're gonna
+be submitting code.
+
+I'm gonna grade your code.
+
+Then my other GSI, she's gonna
+be grading the reports.
+
+Okay?
+
+I'm the one grading
+the simulations,
+
+but for the reports,
+it's gonna be the
+
+one grading it,
+and I'm gonna be
+
+grading the code.
+
+So we're really grading two
+sides, or
+
+two aspects of what you're
+delivering.
+
+So the report is a report
+
+And in today's era of AI, I
+think writing, like I said,
+
+don't make Claude or OpenAI or
+ChatGPT
+
+write the whole thing, please.
+
+I think in terms of
+
+AI policy, I want to be very
+
+clear because I talked with my
+partner GSI.
+
+If she determines that more than
+50% of the
+
+report is AI written, she has a
+way
+
+of putting that as a big
+deduction.
+
+'Cause again, we want you to
+write.
+
+It's okay to review, but we want
+you to write,
+
+some of the report.
+
+And again, uh-
+
+I know Claude,
+Claude-isms quite well.
+
+I know OpenAI Claude-isms quite
+well.
+
+AI talks in a very particular
+way that once you start working
+
+on it, it's very clear.
+
+You know, sometimes it's
+
+kind of like, even when I'm
+writing
+
+AI, I'm like, "Okay,
+this is so clearly AI,
+
+but no one's gonna read it."
+
+But in this case, we are.
+
+So make sure that it
+is properly written.
+
+Now, so this is, for example,
+the best report from homework
+
+one from last year.
+
+Uh, you see that they go a
+little bit
+
+in terms of the overview.
+
+They explain some of their code,
+some of the data.
+
+They, of course, for each part,
+they provide the
+
+different tables with certain
+explanations.
+
+Like I said, it's not just
+putting
+
+the tables and that's it.
+
+You know, like certain
+justification,
+
+certain what exactly you find
+interesting about these results.
+
+How do you compute the different
+things?
+
+And like I said, we'll determine those
+elements in a way.
+
+How do you run your regressions?
+
+Like I said, very interesting
+analytic report.
+
+Okay, here's kind of like the
+whole thing.
+
+Then this is the different ways
+that they found
+
+the different arbitrage.
+
+How do they determine the
+arbitrage,
+
+how many times did they look for
+it?
+
+Were they able to
+make any money?
+
+Certain summaries, again, in all
+the different
+
+summaries that you think are
+interesting to show
+
+in terms of what the data you
+have.
+
+You don't need to
+put all of them.
+
+They kinda went the extra
+mile and put in all of them.
+
+You can just put some of
+the most important ones.
+
+Let me get to the end.
+
+This is a big no-no, please.
+
+I think I mentioned it during
+230D.
+
+When you're plotting ACFs,
+do not plot the first lag.
+
+The first lag is always one or
+minus one, so,
+
+we don't really like that one.
+
+But yeah, and then everything
+that they think was interesting
+
+or anything that they think was
+important to highlight, okay?
+
+So it is open-ended.
+
+You, of course, need to answer
+everything.
+
+So couple of things
+
+For the report,
+there is a rubric.
+
+Like, each part of the homework
+or each part of A, B, C, D,
+
+everything that we're asking,
+everything has a rubric
+
+associated with it.
+
+The reason that I bring
+this over is that,
+
+don't just say, "Hey,
+it's in the code."
+
+No. Remember,
+the one that is
+
+grading the report
+will not see the code.
+
+So this is kind of like a way,
+these are two different
+
+deliverables that are graded
+by two different people.
+
+So I want to make sure that
+your report has
+
+to be properly written.
+
+Now, this is 32 pages.
+
+There are a couple of reports
+
+that, you know, in half the pages
+got also very good grades.
+
+I'm just giving you the best.
+
+You don't need to do this, but
+in general, that's the idea, no?
+
+Now,
+
+for the code piece, which is
+what I'm gonna grade,
+
+you know, even though there's
+
+two parts because you're working with
+Databento
+
+and the currencies, try to
+aggregate it
+
+into a single notebook
+or a single script.
+
+I don't really care if you're
+using scripts or notebooks.
+
+Uh,
+
+but I should be able to
+first read
+
+The code, understand
+what you're doing.
+
+That means that it
+should have all functions
+
+should have docstrings.
+
+You should have
+very good comments.
+
+If you're providing a notebook,
+provide certain notes for me as
+
+a new reader. I don't know how
+you code in general,
+
+so I want to go there.
+
+And the most important aspect
+that if you don't do it,
+
+there's a 20% deduction
+without negotiation,
+
+you have to time your code
+
+So every function that you run,
+every type of analysis
+
+that you run, time it.
+
+I want to see if
+that's important.
+
+Now, if you're dealing
+with this analysis and
+
+the price impact allows you
+to create a signal,
+
+but your price impact takes
+two seconds to compute,
+
+you don't have a signal.
+
+It's too slow.
+
+So part of this big piece about
+high-frequency finance is that
+
+your code needs to be efficient.
+
+Now, yes, you're using Python.
+
+Yes, we're processing
+a lot of data, so
+
+It's not that I'm expecting
+to be highly efficient, but
+
+I do want to see that you're
+timing your code and discussing
+
+if the time makes sense.
+
+So for example, for the
+arbitrage piece, let's
+
+say that you find that the
+arbitrage lasts two seconds,
+
+but to identify the arbitrage,
+your code takes five
+
+You're too late.
+
+Okay? So that's the reason why I
+want to make sure that...
+
+And this is true
+for all assignments.
+
+I'm also gonna be looking
+that you time your code.
+
+Okay? So a few things of
+the different results that
+
+you may want to discuss.
+
+I want you to discuss
+the bid-ask spread.
+
+Like, for example,
+do you expect the spread
+
+to be wider if there's
+more adverse selection?
+
+Meaning if, for example,
+what happened
+
+with a highly liquid market,
+is the spread small or low?
+
+Or if you have a highly liquid
+stock, why is the spread higher?
+
+Maybe something about who
+is trading or who isn't
+
+Expect spread to be wider
+where there's more uncertainty.
+
+That's also where's the price
+of the liquidity.
+
+Expect spread to be wider as
+information is less revealed.
+
+And the main idea,
+as we just discussed,
+
+is that the informed traders,
+they typically trade big,
+
+so largest trade should
+have more information.
+
+I want to see if
+those ideas
+
+match what you
+see in the data.
+
+We want you to
+compute, of course,
+
+price impact and depth.
+
+So, depth is how deep
+
+Is the order book.
+
+You typically can limit the
+order book to top ten,
+
+Like the ten levels.
+
+But I want to kind of like,
+okay, look at those two values.
+
+So low, high price impact,
+will it mean that there's
+
+high depth, or there's more
+noise in the form of traders?
+
+Are informed traders acting
+strategically and reacting
+
+to that price impact?
+
+Whatever you can find about
+spreads and depth
+
+Because at the end,
+what we want you to get
+
+from this homework, yes,
+is understanding how to
+
+process data, for sure,
+but we do want you to get
+
+an understanding of how the
+information revelation is
+
+happening, 'cause that's
+what you're seeing, no?
+
+Of course, you're seeing it
+
+with the 20/20 vis-
+
+or with hindsight vision,
+
+but still, let's go through
+
+the day and see what exactly
+are you looking at and how
+
+would you have reacted if you
+were a trader that moment, okay?
+
+Very quick information
+revelation will mean that
+
+there's gonna be a lot of
+
+Price movement.
+
+Are those price movements
+permanent?
+
+So for example,
+if in a particular
+
+point in time you see
+a big price impact,
+
+doesn't mean that the price
+really moved to a new value.
+
+How exactly is
+the autocorrelation?
+
+Like, what exactly
+is the information?
+
+If there's a lot of lags that
+are correlated,
+
+what that means.
+
+Does that mean that
+you can forecast,
+
+that you can use
+then that information?
+
+That's something that is
+called time series momentum.
+
+It is something
+that you can build.
+
+So all of those are the type of
+things that I want you to think.
+
+Of course, I'm not trying to
+evaluate everything,
+
+but I ask you to start looking
+at the exercise
+
+not only as a data analysis
+exercise, but more of a, "Hey,
+
+what information can I get from
+this data once it's clean?"
+
+Okay?
+
+So a few elements
+about the market.
+
+So yes, for your stock, it's gonna be
+9:30 to 4.
+
+For your foreign data, in theory,
+it's continuously open,
+
+but we're gonna match to the
+9:30 to 4.
+
+Okay?
+
+Now here's a little bit of
+the different variables.
+
+So volume is the total dollar
+amount of stock traded,
+
+so you know exactly what
+that number means.
+
+Number of trades, very simple.
+
+Number of orders, very simple.
+
+VWAP, sorry, we discussed it
+last week,
+
+is the volume-weighted
+average price.
+
+You also have TWAP, like time
+volume-weighted
+
+average price.
+
+Those two things may be valid.
+
+Then we have BBO
+
+Best bid or best,
+best bid, best ask, okay?
+
+Best bid offer,
+I would typically use.
+
+Bid offer, bid ask,
+it depend of the market,
+
+you use one or the other.
+
+But what is the NBBO?
+
+Why is that important?
+
+We know that there are
+multiple exchanges, no?
+
+You can have NASDAQ, you can
+have New York
+
+Stock Exchange, you have BGC.
+
+Like, there are
+multiple exchanges.
+
+Like, there are more
+exchanges than you think
+
+But what is interesting is when
+you're trying to buy a stock,
+
+you cannot just buy at what's
+the best price of an exchange,
+
+'cause that's a violation.
+
+You need to buy at
+the best price, okay?
+
+That's what we call best
+NBBO,
+
+national best bid
+or national best ask.
+
+So those are the things
+that you're gonna be computing,
+
+the BBO spread, meaning what's
+the difference between the
+
+best bid and the best ask.
+
+Again, that's just
+the difference between
+
+the two lower levels.
+
+Okay, so this is the best ask
+
+And this is the best bid.
+
+So this is the spread.
+
+Okay? Um, you want to report that
+in either BPS or in cents,
+
+and be sure to specify
+how are you computing this.
+
+Are you computing it
+volume-weighted
+
+or time-weighted?
+
+You know, those are two
+different results.
+
+Um
+
+Then what is the
+depth of that BBO?
+
+So how many shares
+are the best bid?
+
+How many shares
+are the best ask?
+
+That's kinda like
+the level, level one.
+
+Like for example, if I have
+ten shares
+
+in the best ask, and the price
+of the share is a
+
+thousand, that means that if
+I try to buy, I don't know,
+
+a hundred thousand,
+maybe that's, say, ten.
+
+Whatever. If I try to buy a million,
+I can wipe level one.
+
+Okay? So that's why it's
+important to
+
+know how deep the levels are.
+
+Okay?
+
+And you want to report
+both separately.
+
+Then what is this depth at
+twice the average spread?
+
+So the idea is on the ask side,
+you want to sum all shares
+
+available at a price that
+is less or equal to the
+
+midquote plus two times
+the average spread.
+
+This is a weird
+calculation for sure.
+
+I want you to figure out why
+this calculation matters.
+
+But again, it's a simple
+calculation
+
+that you need to compute and then
+tell me what exactly
+
+is the information that
+depth at twice average spread provides.
+
+Then for the price impact,
+this is what you're
+
+gonna be regressing.
+
+You're gonna be regressing for,
+I believe we ask you five
+
+seconds or five minutes.
+
+I can use the one that we asked.
+
+I think it's five minutes.
+
+We just read it.
+
+But you're gonna be computing
+this series against
+
+Lambda, and then in this case,
+the P can be the midquotes,
+
+so that way you don't need to
+wait for a trade to happen.
+
+So we'll do this price impact
+against the midquote.
+
+And here's a little bit of
+explanation of how you
+
+can get the mid quotes.
+
+Most of the time, you can do
+sampling at the second, okay?
+
+So what is the whole
+data that you need?
+
+Of course, you need to
+create the order book.
+
+You have to have multiple levels
+
+I suggest having at least
+10 levels on the book if
+
+your stock is illiquid.
+
+If it's liquid, maybe five or six
+levels could be enough.
+
+And again, trade data is just
+the whole trade structure.
+
+Okay? Now, for the second part,
+which is for computing all the
+
+series, what you want to do is
+
+Put all the raw
+prices into returns.
+
+You're gonna do that by taking
+log prices and then
+
+The returns,
+as we have done
+
+in other classes,
+it's just a subtraction
+
+of the logs, and we're
+gonna be working with log
+
+data as we typically do.
+
+And I wanted you to compute
+this series for both the
+
+transaction and the mid quotes.
+
+In this case, we want to,
+
+kind of like compare
+against all of them.
+
+Like, is there a drift
+on your returns?
+
+Is it equal to zero?
+
+What exactly are you
+understanding from this,
+
+series of returns,
+both from the price...
+
+Sorry, from the
+transacted price or
+
+From the mid-quotes.
+
+And then finally, we'll compute
+all our different ACFs.
+
+These are the ones that
+you can use in Python.
+
+Like I said, try to remove
+
+the first lag.
+
+The first lag is not that
+important,
+
+or lag zero we say.
+
+And then for the arbitrage
+opportunities,
+
+this is very important, okay?
+
+So for the average,
+for the arbitrage
+
+opportunities, remember,
+you need the order book
+
+for each currency,
+which you're gonna have.
+
+At each second or
+whatever unit you want,
+
+you want to calculate whether
+an arbitrage opportunity exists.
+
+Now, remember,
+this is an arbitrage that
+
+because it's available for
+
+A second or two,
+you cannot get cute
+
+with limit orders.
+
+You have to be aggressive.
+
+So when there's an arbitrage,
+you are an aggressor,
+
+meaning that you're
+gonna buy at the ask,
+
+and you're gonna sell at
+the bid whenever you're going.
+
+So for example, if you have a
+Euro Yen,
+
+It was Euro Yen,
+a USD Yen, and Euro Dollar.
+
+I believe those are the three.
+
+So if you find the arbitrage is,
+"Hey,"
+
+I'm gonna buy yens," so
+you're gonna hit the ask.
+
+Then with those yens, I'm gonna
+buy euros,
+
+and then I'm gonna sell you, or
+sell
+
+dollars or whatever.
+
+Like, you need to be
+aggressive when you do.
+
+Uh, the idea is, like,
+by computing those values,
+
+you want to determine the
+duration, like how long
+
+will that opportunity last,
+and frequency is how many times
+
+did it show up in a particular
+day, and quantity is how much
+
+You can extract.
+
+So in this case,
+it's the minimum, no?
+
+So if I only have a few
+left on one side of my leg
+
+You know, it's the minimum of
+the available best bid and ask.
+
+And because it's
+arbitrage, remember,
+
+you enter the trade
+and you end up at the
+
+other side of the trade
+
+With again, meaning that
+
+in theory you
+don't need to
+
+put any money
+'cause everything is
+
+gonna be closed out.
+
+So I want you to understand how
+much dollars would you have made
+
+if you do it the right way.
+
+Okay? I think overall this is
+kind of like the most fun
+
+part of homework one 'cause
+you want to build it and see
+
+if you find any arbitrage.
+
+And again, you're doing it in
+currency land.
+
+Currency is a highly liquid
+market, so if you're able
+
+to find small pieces of
+arbitrage in this market,
+
+it's something that you can
+easily exploit eventually.
+
+Okay?
+
+Now the final thing,
+you wanna be computing also
+
+variance and autocorrelations.
+
+I want you to do that
+on a 30-minute window.
+
+We want to see if there's
+any differences
+
+in the variance of the series.
+
+This is also for you to
+get familiar into behaviors.
+
+Okay? So it's very well known
+that
+
+mornings are very active
+after lunch.
+
+And during lunch in Eastern
+Time, volumes crater.
+
+So what exactly those variations
+over the day, uh, can they be
+
+seen into the time series too?
+
+That is information.
+
+That's something that, again,
+if you are a trader, probably
+
+you know, but if you're not,
+it's very interesting
+
+to see it empirically.
+
+Okay? And like I said, sure, you
+should be doing
+
+a lot of computation.
+
+Mostly of what I want you
+to discuss are some of the
+
+interpretations of what you see.
+
+Does it match with, um,
+some of what you cover
+
+in class or maybe your
+preconceived notions?
+
+Okay, some of the expected
+findings is that in theory,
+
+spread should be larger in the
+morning, and they
+
+kind of like move away.
+
+That's part of the behavior, and
+then people
+
+starting to trade
+with certain lag.
+
+You're probably going to find
+that
+
+the price impact is positive.
+
+You're probably going to find
+that spread
+
+Comove negatively with depth.
+
+You're probably gonna find that
+there's gonna be much more
+
+trading activity in large cap.
+
+You're probably gonna find that
+
+if you have a lot of trading
+activity,
+
+that means that you're
+gonna have much lower price.
+
+So again, those are the
+expected findings, no?
+
+You're gonna find that spread
+patterns are not in currencies.
+
+You're gonna see that
+volatilities can be very
+
+tricky to express, in
+particular in the
+
+currency markets
+
+And overall, this is kind of the
+most important takeaways.
+
+In particular, how can you
+gonna deal with
+
+the different order books?
+
+How do you want to
+compute spread and depth?
+
+You want most of the time
+to only keep
+
+everything on level one,
+but sometimes you may want
+
+to go to level two and
+level three of the book.
+
+I wanted you to be very clear
+about what are the differences
+
+between the trade series
+and the midquote series,
+
+how to interpret the
+autocorrelation lags,
+
+if you find any of those
+autocorrelation lags
+
+significant, and finally,
+how will you interpret
+
+the price impact
+
+Okay? And that's homework one.
+
+Like I said, it's a little bit
+of a grind,
+
+very similar to what you did in
+230X, so very empirical results.
+
+Um, hopefully by this stage in
+your career,
+
+you should be able to, you know,
+the coding piece should not be
+
+daunting or hard to do.
+
+But again, it's processing a
+little bit of a bigger data set
+
+that you're used to and with its
+own schema. So
+
+most of what you need to do is
+learning that schema
+
+first, and then you can easily
+
+Run all of your analysis for
+your home.
+
+And that's all I have.
+
+Any questions, comments,
+concerns?
+
+[XIN YANG SOO] Excuse me.
+
+Sure, on page 18, so can you
+turn to the slides?
+
+[VINICIO DE SOLA] Sure.
+
+[XIN YANG SOO] So why we should regress
+the price change over the price?
+
+So this is return, but in the
+equations before,
+
+you said this is just price
+difference
+
+rather than the return on
+the left side.
+
+[VINICIO DE SOLA] Correct. So, that's a fantastic
+question.
+
+In terms of how you want to
+relate these two,
+
+it's really we want to
+compute the price impact.
+
+So let's see here.
+
+You see that we want to compute
+the price impact,
+
+against the return.
+
+Okay? So it is asked to do
+it against the return.
+
+But yeah, you can do both.
+
+There's price impact
+against the price,
+
+and then there's price
+impact against the return.
+
+We're asking you to do it
+against the return
+
+in the homework.
+
+Okay?
+
+[XIN YANG SOO] Okay. Sure. So I have another
+question.
+
+[VINICIO DE SOLA] Mm-hmm.
+
+[XIN YANG SOO] So can you turn to the maybe
+page eight or page seven or-
+
+[VINICIO DE SOLA] Mm-hmm.
+
+[XIN YANG SOO] So before, then before the
+previous page.
+
+Okay, so I'm wondering why
+
+if buying the dealer
+will lose money
+
+if the informed trader
+hits this quote.
+
+I don't know why this is
+equals AT minus VH.
+
+So how can we understand this?
+
+[VINICIO DE SOLA] Yeah. So remember, VH is
+the price that this asset
+
+will have, and the
+informed trader
+
+knows that price.
+
+I am the dealer.
+
+I don't know if it's
+VH or if it's VL,
+
+so I put an ask at
+the price that is between
+
+my information and VH.
+
+That's what AT is.
+
+So if-
+
+What if the informed trader
+hits this quote,
+
+what it means from my
+perspective is like, "Oh,
+
+shoot, the price was VH.
+
+I thought it wasn't."
+
+So I put a price that
+was lower than VH.
+
+So again, when I say that
+
+it lose money,
+it's not a monetary
+
+value like, oh,
+the real value was
+
+VH, but I sold it at 80.
+
+So I sold it
+
+Less than what I should get.
+
+That's what we call it lose money
+in that perspective.
+
+When it's an uninformed trader,
+because they don't know what
+
+they're doing, the idea is like,
+"Okay, that's new information
+
+that I'm gonna have, but I make
+money in this trade because
+
+they weren't informed."
+
+Meaning that they just hit it
+by chance, and that's what we
+
+say that we win money on that.
+
+It's a simplification, for sure,
+but that's the idea of
+
+why we say that in one
+case we're losing and in
+
+the other we're winning.
+
+[XIN YANG SOO] Oh, okay. So why in a situation that the dealer will win.
+
+Its profit is A t minus
+V D t minus 1.
+
+[VINICIO DE SOLA] Yeah, because the idea here
+is, because I put the price.
+
+So, yeah, fair question.
+
+So here is the information
+that I had before.
+
+This is the price that I gave.
+
+Because the trade came from an
+uninformed guy, I made a spread.
+
+'cause this is what the
+price I thought it was.
+
+'cause remember,
+this is the price
+
+that the dealer estimated
+based on the probability
+
+This is the price that
+they put the asset at,
+
+and because they traded with
+an uninformed trader,
+
+that means that I make the
+difference as money.
+
+[XIN YANG SOO] So whether the dealer knows
+what VH and VL is?
+
+[VINICIO DE SOLA] That's the assumption
+that we know
+
+that they exist, but we don't
+know which one it is,
+
+[XIN YANG SOO] Because
+
+I'm not informed so the dealer don't know,
+
+but the informed trader know.
+
+[VINICIO DE SOLA] Exactly.
+
+[XIN YANG SOO] So, how we can understand this
+VH?
+
+So can we think like VH?
+
+Maybe the price the stock will
+
+tend to, rather than it exactly
+
+lies at some price level now?
+
+[VINICIO DE SOLA] No. So remember,
+the idea here is
+
+that we're assuming
+a simple model where
+
+the stock is either
+one or the other value,
+
+and the only one that really
+knows it is the informed trader.
+
+And the market maker is here
+just to make a market and try
+
+to don't get slaughtered
+in the process.
+
+That's why we call this
+a simplification of it.
+
+So that's why we say
+there's gonna be a
+
+positive spread and only the
+informed trader which one is.
+
+But remember,
+you don't know
+
+which one is it,
+so this is kind
+
+of like a way of
+quantifying
+
+the uncertainty
+
+By providing very
+simple results,
+
+but everything
+is uncertain.
+
+Only the informed trader
+knows what VH and VL is.
+
+[XIN YANG SOO] Oh, okay. Mm-hmm. Next.
+
+[VINICIO DE SOLA] Okay.
+
+Okay, good question.
+
+Now, I'm gonna go to
+the questions that
+
+I have in the chat.
+
+Um, so first question
+of the chat by
+
+Reza, assignment should
+be done by the group?
+
+Yes. So the way that...
+
+So okay, good question, Reza.
+
+So let me discuss rubric.
+
+So for assignment one,
+where there's no simulation,
+
+the rubric is 50% the report,
+50% the code, and the grade
+
+goes to your group.
+
+Okay? So you're submitting as a
+group.
+
+That's why you already have
+groups set up.
+
+If by any chance you don't
+have a group yet, send me
+
+a message via Slack or via email
+so I can add you
+
+to a group as soon as possible.
+
+Now, starting homework two
+
+Homework three and the projects,
+the rubric changed a little bit.
+
+So for homework two,
+the rubric goes like this.
+
+80% of the grade of homework
+two is a group homework,
+
+where you're gonna be also
+submitting a report and a code.
+
+So the report is 40% and the
+code is 40%.
+
+Where is the other 20%?
+
+The other 20% is individual,
+and is what you submit
+
+for your simulation.
+
+So that is the individual piece
+of the class.
+
+Okay? So there's no final in
+this class, so there's
+
+no way to differentiate
+yourself because, again,
+
+when we think about group work,
+pretty much everybody will get
+
+into, you know, 9 and 10.
+
+So that makes the A's, A minus,
+A pluses,
+
+and B minus, like, it was very
+hard for this class.
+
+Like, "Oh, yeah, you were 9.7,
+but because the mean is 9.8,
+
+you get a B minus."
+
+It's kind of very unfair.
+
+So one of the reasons that
+this simulation brought
+
+is that variability.
+
+So 20%
+
+Of homework two is individually.
+
+So each of you will have
+an individual homework, sorry,
+
+an individual value for
+that part,
+
+and it will depend
+on your simulation.
+
+Same thing with homework three.
+
+And then for the final project,
+you have
+
+the report is 20%,
+the code is 20%.
+
+There is a presentation
+that you do in class
+
+that is 20%.
+
+There is a group simulation
+that is worth 20%,
+
+and there's an individual simulation
+that is worth 20%.
+
+Okay?
+
+Um, so
+
+Yeah. I'll explain, like I said,
+for this one, there's no need
+
+for putting any rubric.
+
+It's literally 50/50, and
+you'll get the grade as a group.
+
+But starting in homework two,
+there is group work and
+
+individual work.
+
+Okay? Hopefully that
+answered your question.
+
+I vamped a little bit, but I
+wanna make sure that is clear.
+
+Uh, Isabella asked a
+second question, like,
+
+"Are we using data in the
+assignment currency and words?
+
+Are we allowed to use
+more or less recent
+
+data for Databento?"
+
+So the data in words
+
+It's not really used for
+homework one nor two.
+
+In theory, it's for homework three,
+but that was because,
+
+last year there was an issue
+with the Words,
+
+account, which I think it's
+solved.
+
+So more likely than not, we're gonna
+ask you to just go
+
+to the API to get data in Words.
+
+But the data currency, it is
+the one that you
+
+use for homework one.
+
+So for the stocks, you're gonna
+use Databento,
+
+and you can use any day.
+
+So for the stocks,
+you can use yesterday
+
+for all that I care,
+but for the currency,
+
+you're using a little bit
+of an older dataset for sure.
+
+Okay?
+
+Hopefully that answered.
+
+Yeah. Thank you.
+
+Okay. Any other question?
+
+That was a good one.
+
+Okay. If no more questions,
+thank you very much.
+
+I'll release the first
+during the weekend,
+
+I'll release the starter
+notebook
+
+for those who want to look
+at it.
+
+If not, you can start already.
+
+And case
+
+The simulation one will
+release on Monday, and next
+
+week we're gonna do simulations.
+
+So remember, everybody should be
+here, and during simulation,
+
+everybody should have
+cameras on, by the way.
+
+If you have the cameras off,
+your simulation is voided.
+
+So, if you don't
+have a laptop with a
+
+working camera, make it
+work for next week, okay?
+
+Today is fine,
+but for next week,
+
+I do want to see all
+those faces, okay?
+
+With that,
+that's all
+
+that I have. Thank you
+very much.
+
+Bye-bye.
+
