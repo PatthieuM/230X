@@ -2,4 +2,4 @@
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
-
+rit_config.py
