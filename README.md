@@ -49,4 +49,5 @@ Part 2 is individual. Each team member's write-up and trading script are in `HW3
 - `Alex/`: `RIT_ALGO1_Writeup_Alex.md` and `arbitrage.py`;
 - `Elias/`: `README.md`, the `algo1_bot/` source and the plotted run data (the write-up itself is Section 6 of the notebook);
 - `Elouan/`: `RIT_ALGO1_Writeup_Elouan.md` and `algo1_arbitrage.py`;
+- `Jean/`: `RIT_ALGO1_Writeup_Jean.md`, `algo1_v3.py`, `flatten.py` and the session fill log `all_fills.csv`;
 - `matthieu/`: `RIT_Algorithmic_Trading_Matthieu_Pascal.pdf` and `rit_adaptive.py`.
