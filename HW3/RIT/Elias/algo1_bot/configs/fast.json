@@ -1,0 +1,12 @@
+{
+  "_comment": "FAST heat profile (10 Sep post-mortem): MARKET legs, fired concurrently and atomically, never rest. No cancel flood (nothing to cancel), so the serialised client keeps polling ~880/s instead of collapsing to 314. Signal is the raw crossed book (own_resting stays empty with MARKET legs). Rare residuals hedged at MARKET immediately (small, because atomic pairs fill together). min_edge_cross margin skips the 1-tick leftovers the field leaves; take the fat crosses.",
+  "pair_mode": "concurrent",
+  "confirm_then_hedge": false,
+  "leg_kind": 0,
+  "second_leg_market": false,
+  "keep_remainder": false,
+  "hedge_kind_no_quotes": 0,
+  "max_hedge_ticks": 8.0,
+  "min_edge_cross": 0.0,
+  "max_abs_pos": 6000
+}

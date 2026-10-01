@@ -1,0 +1,10 @@
+{
+  "_comment": "Account 1 (10 Sep 2026): the tested, careful config — the HW02 record. Scarce leg first, deep leg sized to the fill, protective LIMIT legs, clamped hedges. These are already the Config defaults; this file just pins them explicitly for the run.",
+  "pair_mode": "sequential",
+  "confirm_then_hedge": true,
+  "leg_kind": 1,
+  "second_leg_market": false,
+  "max_abs_pos": 6000,
+  "d": 3.0,
+  "c_min": 2.0
+}

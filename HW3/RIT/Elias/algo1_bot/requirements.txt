@@ -1,0 +1,9 @@
+# ALGO1 bot — install into .venv.nosync (see CLAUDE.md "Environment"):
+#   uv pip install --python .venv.nosync/bin/python -r requirements.txt
+numpy>=2.0
+scipy>=1.13
+pandas>=2.2
+pyarrow>=16
+matplotlib>=3.9
+pytest>=8
+ipykernel>=6.29

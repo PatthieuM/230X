@@ -1,0 +1,4 @@
+run,minutes,ticks,orders_per_s_limit,polls_per_s,cross_episodes,median_max_edge_ticks,pairs_sent,pairs_both_filled,completion_pct,orders_sent,cancels,max_abs_pos,stopped
+test,10.58,164,10,825.82,104,4.00,597,81,13.57,1356,34053,24000,kill switch: runs/KILL
+heat_acct1,19.97,299,500,314.26,118,2.00,1555,16,1.03,3162,43064,24608,case STOPPED
+heat_acct2,19.88,298,500,210.46,107,2.00,1248,8,0.64,2567,170299,24310,case STOPPED

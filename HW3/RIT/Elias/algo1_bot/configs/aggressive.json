@@ -1,0 +1,10 @@
+{
+  "_comment": "Account 2 draw (10 Sep 2026): fastest possible entry to win shallow-cross races that Account 1's confirm-then-hedge loses. Concurrent MARKET legs, larger inventory tolerance. Hedges stay clamped (max_hedge_ticks) — that is the safety fix, not a knob. Higher variance; leaderboard keeps the best account.",
+  "pair_mode": "concurrent",
+  "confirm_then_hedge": false,
+  "leg_kind": 0,
+  "second_leg_market": true,
+  "max_abs_pos": 12000,
+  "d": 3.0,
+  "c_min": 2.0
+}
