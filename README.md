@@ -51,3 +51,14 @@ Part 2 is individual. Each team member's write-up and trading script are in `HW3
 - `Elouan/`: `RIT_ALGO1_Writeup_Elouan.md` and `algo1_arbitrage.py`;
 - `Jean/`: `RIT_ALGO1_Writeup_Jean.md`, `algo1_v3.py`, `flatten.py` and the session fill log `all_fills.csv`;
 - `matthieu/`: `RIT_Algorithmic_Trading_Matthieu_Pascal.pdf` and `rit_adaptive.py`.
+
+## Final Project
+
+`Project/` contains the initial setup for the execution-speed project:
+
+- the project instructions and Scholtus and van Dijk reference paper;
+- Nasdaq TotalView-ITCH MBP-1 data for AAPL and GPRO;
+- 20 daily files covering September 2019;
+- Databento metadata and integrity manifests.
+
+The equity files include all trades and best-bid/best-offer updates needed to simulate execution delays of 0 ms, 100 ms, and 1 second. Full-month EUR/USD data still needs to be added.
