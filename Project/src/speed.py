@@ -208,7 +208,7 @@ def sig_imb(f, k: int, theta: float) -> np.ndarray:
 # Lookbacks and bandwidths are taken from the paper's 60-second settings
 # (Appendix A: s in {2,5,10,...}, l in {10,...,60}, b in {0.0005, 0.001, 0.0015, ...}).
 BASELINE = {
-    "MA": (sig_ma, dict(s=5, l=30, b=0.001)),
+    "MA": (sig_ma, dict(s=5, l=30, b=0.0005)),
     "OBV": (sig_obv, dict(s=5, l=30, b=0.5)),
     "IMB": (sig_imb, dict(k=2, theta=0.3)),
 }

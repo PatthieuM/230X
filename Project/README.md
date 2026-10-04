@@ -36,9 +36,9 @@ The data are in the repository; the notebook runs in about one minute.
 
 ### Headline results
 
-- All 27 strategies lose money net of the spread, from -0.15% (EUR/USD, MA) to -109% (GPRO, IMB). On GPRO the signals earn money at the mid and the 22.5 bps spread takes it back.
-- The cost of delay, averaged over the nine asset/signal pairs, is +0.04% at 100 ms and -0.19% at 1 second.
-- The less liquid stock pays the most at 1 second: -1.25% for GPRO MA, against -0.22% for AAPL MA and -0.02% for EUR/USD MA.
+- All 27 strategies lose money net of the spread, from -0.19% (EUR/USD, MA) to -109% (GPRO, IMB). On GPRO the signals earn money at the mid and the 22.5 bps spread takes it back.
+- The cost of delay, averaged over the nine asset/signal pairs, is +0.02% at 100 ms and -0.12% at 1 second.
+- The less liquid stock pays the most at 1 second: -0.72% for GPRO IMB and -0.62% for GPRO MA, against -0.27% for AAPL MA and +0.01% for EUR/USD MA.
 - On days when a rule makes money, a 1 second delay lowers its return on all three assets, as in the paper.
 - Tick frequency sets how often a delayed order meets a changed quote; tick size relative to price sets what each miss costs.
 
