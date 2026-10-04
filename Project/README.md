@@ -10,9 +10,10 @@ Study of the cost of execution delay for three trading signals, after Scholtus a
 | Period | September 2019, 20 trading days, 13:30 to 20:00 UTC (09:30 to 16:00 New York) |
 | Signals | Moving average, on-balance volume, persistent best-quote imbalance (own) |
 | Delays | 0 ms, 100 ms, 1 second |
-| Book | $1,000,000, trades at the prevailing best bid/ask |
+| Book | $1,000,000: every trade is for the units worth $1,000,000 on the first day, at the prevailing best bid/ask |
+| Trading window | 09:40 to 15:50 New York time, book closed daily at 15:50 |
 
-**Deliverable:** `MFE230X_project_speed.ipynb` (executed, with the 27 P&L reports, the cost of delay, the Figure 6 replication and the discussion).
+**Deliverable:** `MFE230X_project_speed.ipynb` (executed, with the 27 P&L reports, holding times, the cost of delay, the Figure 6 replication and the discussion). It follows the instructions of Discussion Session 06.
 
 ### Layout
 
@@ -35,9 +36,10 @@ The data are in the repository; the notebook runs in about one minute.
 
 ### Headline results
 
-- All 27 strategies lose money net of the spread (0.3 bps per round trip on EUR/USD, 0.7 on AAPL, 22.5 on GPRO).
-- The cost of delay is at most 0.06 bps per round trip for eight of the nine baseline strategies. The imbalance signal on GPRO gives up 0.33 bps per round trip ($26,198) with a 1 second delay.
-- On AAPL, where the rules lose money, a delay of 10 to 500 ms improves performance by 1 to 7%.
+- All 27 strategies lose money net of the spread, from -0.15% (EUR/USD, MA) to -109% (GPRO, IMB). On GPRO the signals earn money at the mid and the 22.5 bps spread takes it back.
+- The cost of delay, averaged over the nine asset/signal pairs, is +0.04% at 100 ms and -0.19% at 1 second.
+- The less liquid stock pays the most at 1 second: -1.25% for GPRO MA, against -0.22% for AAPL MA and -0.02% for EUR/USD MA.
+- On days when a rule makes money, a 1 second delay lowers its return on all three assets, as in the paper.
 - Tick frequency sets how often a delayed order meets a changed quote; tick size relative to price sets what each miss costs.
 
 ### Data limits
