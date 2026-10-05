@@ -49,4 +49,6 @@ The data are in the repository; the notebook runs in about one minute.
 
 ## Part 2: RIT simulation
 
-Not in this folder yet.
+Part 2 is individual. Each team member's ALGO2 write-up and trading script are in `RIT Individual/<name>/`:
+
+- `Jean/`: `HW3_Part_2___RIT_ALGO2_Market_Making_Write-up.pdf` and `algo2_mm.py`.
