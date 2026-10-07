@@ -130,13 +130,7 @@ Levers 1 to 5 are passive: they make the reducing fill more likely, but in a tre
 
 A market maker earns a small amount per round trip, about 2¢ per share here, and needs flow on both sides so that both legs fill. In a range, buyers and sellers alternate and inventory comes and goes. In a trend the flow is one-sided: in a rally, buyers take the offers, so the quote that fills is the ask, leaving the market maker short just before the price rises further. Spread income grows with the number of fills; the inventory loss grows with the size of the move.
 
-Penny-jumping makes this worse. Being first in the queue is an advantage in a range, because I get the noise flow before the other market makers. In a trend, it means I am the first one filled by the informed flow. My P&L shows both: +$800 in the calm first 20 ticks, then a steady loss as the price trended.
-
-The comparison with my manual account in the same case makes the same point from the other side. Trading by hand with the trend, I made **+$41,400** (after $2,800 of fines for going over the position limit). In a trending market, the profitable position is directional, which is the opposite of what a market maker ends up holding.
-
-![Manual account in the same case](figures/fig2_manual_session.png)
-
-*Manual account (`marthan_alexandre_manual`) in the same case, for comparison: P&L +$41,400 after $2,800 in fines.*
+Penny-jumping makes this worse. Being first in the queue is an advantage in a range, because I get the noise flow before the other market makers. In a trend, it means I am the first one filled by the informed flow. My P&L shows both: +$800 in the calm first 20 ticks, then a steady loss as the price trended. In a trending market, the profitable position is directional, which is the opposite of what a market maker ends up holding.
 
 **When it can still work:** only if the market maker stops being symmetric in a trend. It needs a trend signal on the horizon of the trend (tens of ticks, not seconds), and when it fires it should stop quoting the side the trend runs into and close inventory held against the trend. Back in a range, it resumes two-sided quoting.
 
@@ -144,13 +138,10 @@ The comparison with my manual account in the same case makes the same point from
 
 My algorithm's P&L for the graded case was **−$5,250.38**, with **no fines**, on 144,122 shares traded. It was about +$800 after the first 20 ticks, fell to about −$5,500 by tick 130 as the algorithm held a short through the rally, and recovered slightly over the rest of the case.
 
-For comparison, my manual account in the same case ended at +$41,400 after $2,800 of fines.
-
 ## Files in this folder
 
 | File | What it is |
 | --- | --- |
 | `RIT_ALGO2_Writeup_Alex.md` | This write-up |
 | [`algo2_exploitative.py`](algo2_exploitative.py) | The market-making script used in the graded case (API key removed) |
-| `figures/fig1_algo_session.png` | RIT client at the end of the graded case, algorithm account |
-| `figures/fig2_manual_session.png` | RIT client at the end of the same case, manual account |
+| `figures/fig1_algo_session.png` | RIT client at the end of the graded case |

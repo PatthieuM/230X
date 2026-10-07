@@ -51,6 +51,6 @@ The data are in the repository; the notebook runs in about one minute.
 
 Part 2 is individual. Each team member's ALGO2 write-up and trading script are in `RIT Individual/<name>/`:
 
-- `Alex/`: `RIT_ALGO2_Writeup_Alex.md`, `algo2_exploitative.py` (the market maker run in the graded case) and the RIT screenshots in `figures/`.
+- `Alex/`: `RIT_ALGO2_Writeup_Alex.md`, `algo2_exploitative.py` (the market maker run in the graded case) and the RIT screenshot of the graded case in `figures/`.
 - `Jean/`: `RIT_ALGO2_Writeup_Jean.md` (also as `RIT_ALGO2_Writeup_Jean.pdf`), `algo2_mm.py` and the charts in `figures/`.
 - `Elouan/`: `RIT_ALGO2_Writeup_Elouan.md`, `algo2_momentum.py` (the momentum taker), `algo2_market_making.py` (the first, passive version) and the ALGO2e scripts in `algo2e/`.
