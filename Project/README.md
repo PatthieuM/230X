@@ -4,7 +4,7 @@ The assignment is in `instructions/MFE230X_project_2026.pdf`, and the paper Part
 
 | Section | What it asks | Folder | Main deliverable |
 |---|---|---|---|
-| 1. Speed (group) | Three signals on two equities and one FX pair, with 0 ms / 100 ms / 1 s execution delays, and the cost of delay | [`Part1_Speed/`](Part1_Speed/) | `MFE230X_project_speed.ipynb` |
+| 1. Speed (group) | Three signals on two equities and one FX pair, with 0 ms / 100 ms / 1 s execution delays, and the cost of delay | [`Part1_Speed/`](Part1_Speed/) | `report/speed_report.tex` (written report) and `MFE230X_project_speed.ipynb` |
 | 2.1 ALGO2 (individual) | Questions (a)–(f) on the RIT ALGO2 market-making case, one write-up per team member | [`Part2.1_ALGO2_Individual/`](Part2.1_ALGO2_Individual/) | `<name>/RIT_ALGO2_Writeup_<name>.md` |
 | 2.2 ALGO2e (group) | Questions (a)–(d) on the RIT ALGO2e case (CNR, RY, AC) | [`Part2.2_ALGO2e_Group/`](Part2.2_ALGO2e_Group/) | `final_simulation_writeup.pdf` |
 
@@ -14,7 +14,8 @@ Project/
 ├── references/                   Scholtus and van Dijk (2012)
 ├── Part1_Speed/
 │   ├── MFE230X_project_speed.ipynb
-│   ├── src/                      speed.py, download_fx.py
+│   ├── report/                   speed_report.tex, tables/, figures/
+│   ├── src/                      speed.py, report_tables.py, download_fx.py
 │   ├── data/                     equity (Databento) and EUR/USD (Dukascopy) ticks
 │   └── outputs/                  tables (CSV) and figures/
 ├── Part2.1_ALGO2_Individual/
@@ -41,14 +42,16 @@ Study of the cost of execution delay for three trading signals, after Scholtus a
 | Book | $1,000,000: every trade is for the units worth $1,000,000 on the first day, at the prevailing best bid/ask |
 | Trading window | 09:40 to 15:50 New York time, book closed daily at 15:50 |
 
-**Deliverable:** `MFE230X_project_speed.ipynb` (executed, with the 27 P&L reports, holding times, the cost of delay, the Figure 6 replication and the discussion). It follows the instructions of Discussion Session 06.
+**Deliverables:** the written report `report/speed_report.tex` (LaTeX, compiled in Overleaf with its `tables/` and `figures/`) and the executed notebook `MFE230X_project_speed.ipynb` behind it: the 27 P&L reports, holding times, the cost of delay, the replication of Figures 6 and 7 of the paper with its selection-bias test, and the discussion. Both follow the instructions of Discussion Session 06.
 
 ### Layout
 
 Paths are relative to `Part1_Speed/`.
 
 - `MFE230X_project_speed.ipynb`: analysis and write-up.
-- `src/speed.py`: data loaders, signals, delayed-execution simulator, reporting.
+- `report/speed_report.tex`: the written report; `report/tables/` and `report/figures/` are generated.
+- `src/speed.py`: data loaders, signals, delayed-execution simulator, random-rule (selection-bias) test, reporting.
+- `src/report_tables.py`: writes the LaTeX tables of the report from `outputs/`.
 - `src/download_fx.py`: downloads the EUR/USD ticks.
 - `outputs/`: tables (CSV) and `outputs/figures/` (PNG) written by the notebook.
 - `data/equities/databento/mbp-1/`: Nasdaq TotalView-ITCH MBP-1 for AAPL and GPRO, one DBN/zstd file per trading day (every trade and every change of the best bid and offer).
@@ -60,22 +63,24 @@ Paths are relative to `Part1_Speed/`.
 cd Part1_Speed
 pip install databento jupyter matplotlib numpy pandas scipy
 jupyter nbconvert --to notebook --execute --inplace MFE230X_project_speed.ipynb
+python src/report_tables.py
 ```
 
-The data are in the repository; the notebook runs in about one minute.
+The data are in the repository; the notebook runs in about two minutes (5,000 random reassignments for the selection-bias test).
 
 ### Headline results
 
 - All 27 strategies lose money net of the spread, from -0.19% (EUR/USD, MA) to -109% (GPRO, IMB). On GPRO the signals earn money at the mid and the 22.5 bps spread takes it back.
-- The cost of delay, averaged over the nine asset/signal pairs, is +0.02% at 100 ms and -0.12% at 1 second.
-- The less liquid stock pays the most at 1 second: -0.72% for GPRO IMB and -0.62% for GPRO MA, against -0.27% for AAPL MA and +0.01% for EUR/USD MA.
-- On days when a rule makes money, a 1 second delay lowers its return on all three assets, as in the paper.
+- For one strategy over one month the cost of delay is too small to measure: averaged over the nine asset/signal pairs it is +0.02% at 100 ms and -0.12% at 1 second, with a 90% interval of -0.42% to +0.14%.
+- Pooling the orders of a 601-rule universe (the paper's 60-second grid) makes it measurable at 1 second and not at 100 ms: a late order costs 0.07 bps for MA rules on AAPL, 0.06 bps for MA rules on GPRO and 0.11 bps for IMB rules on GPRO.
+- The paper's central result holds on the liquid stock after its selection-bias test: on AAPL, delay lowers the return of profitable rules by 0.7% at 200 ms and 3.1% at 1 second, more than random rules lose. On GPRO and EUR/USD the losses at 1 second are what selection alone produces.
 - Tick frequency sets how often a delayed order meets a changed quote; tick size relative to price sets what each miss costs.
 
 ### Data limits
 
-- MBP-1 has the top of book only: orders are assumed to fill in full at the best quote.
+- MBP-1 has the top of book only: orders are assumed to fill in full at the best quote. The $1,000,000 order is half the displayed size on EUR/USD, 22 times on AAPL and 53 times on GPRO.
 - No FX trade tape: OBV on EUR/USD uses tick volume.
+- One month: single-strategy costs of delay are not statistically measurable.
 
 ## Part 2.1: ALGO2, individual (`Part2.1_ALGO2_Individual/`)
 

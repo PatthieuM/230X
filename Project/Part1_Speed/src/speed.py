@@ -9,11 +9,15 @@ Follows Scholtus and van Dijk (2012), section 3:
 
 Following the discussion-session instructions, every trade is for a fixed
 number of units: the quantity worth $1,000,000 on the asset's first day.
+
+The execution code is vectorised over rules and delays: all the round trips of
+all the rules of an asset-day are held in flat arrays, which is what makes the
+600-rule universe and the placebo test of the selection bias cheap to run.
 """
 from __future__ import annotations
 
 import lzma
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
@@ -35,9 +39,12 @@ SESSION_OPEN = (13 * 3600 + 30 * 60) * NS
 SESSION_CLOSE = 20 * 3600 * NS
 NO_TRADE = 10 * 60 * NS  # no entries in the first/last 10 minutes
 
+ASSETS = ("AAPL", "GPRO", "EURUSD")
 DELAYS_MS = (0, 100, 1000)
 DELAYS_FIG6_MS = (0, 10, 20, 50, 100, 200, 500, 1000)  # the paper's eight speed levels
 DELAYS_CURVE_MS = (0, 10, 20, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000)
+# Horizons of the per-order price response, beyond the delays that are traded.
+HORIZONS_MS = (10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 30000, 60000)
 
 
 @dataclass
@@ -104,7 +111,8 @@ def fx_dates() -> list[str]:
 
 def load_fx_day(date: str) -> Day | None:
     """Dukascopy EUR/USD top of book. There is no public FX trade tape, so the
-    volume input of OBV is tick volume: one unit per quote that moves the mid."""
+    volume input of OBV is tick volume: one unit per quote that moves the mid.
+    Quoted sizes are in millions of euros."""
     midnight = pd.Timestamp(date, tz="UTC").value
     parts = []
     for h in range(12, 21):
@@ -128,6 +136,22 @@ def load_fx_day(date: str) -> Day | None:
         bsz=a["bv"][ok].astype(float), asz=a["av"][ok].astype(float),
         tr_ts=ts[moved], tr_px=mid[moved], tr_sz=np.ones(int(moved.sum())),
     )
+
+
+def iter_asset_days(assets=ASSETS):
+    """Yield (asset, Day) pairs. An equity file holds both tickers, so the two
+    stocks are produced from the same decoded file and nothing is kept in memory."""
+    stocks = [a for a in assets if a != "EURUSD"]
+    if stocks:
+        for d in equity_dates():
+            loaded = load_equity_day(d)
+            for a in stocks:
+                yield a, loaded[a]
+    if "EURUSD" in assets:
+        for d in fx_dates():
+            day = load_fx_day(d)
+            if day is not None and len(day.ts) > 1000:
+                yield "EURUSD", day
 
 
 # --------------------------------------------------------------------------- features
@@ -205,51 +229,102 @@ def sig_imb(f, k: int, theta: float) -> np.ndarray:
     return np.where(run_up, 1, np.where(run_dn, -1, 0))
 
 
-# Lookbacks and bandwidths are taken from the paper's 60-second settings
-# (Appendix A: s in {2,5,10,...}, l in {10,...,60}, b in {0.0005, 0.001, 0.0015, ...}).
+# The three baseline rules behind the 27 P&L reports. Lookbacks and bandwidths
+# are values of the paper's 60-second settings (Appendix A).
 BASELINE = {
     "MA": (sig_ma, dict(s=5, l=30, b=0.0005)),
     "OBV": (sig_obv, dict(s=5, l=30, b=0.5)),
     "IMB": (sig_imb, dict(k=2, theta=0.3)),
 }
 
-# Small parameter universe per family, used for the Figure 6 style average.
+# Rule universe for the Figure 6 / Figure 7 analysis. MA and OBV use every
+# (short, long, band) combination of the paper's 60-second grid, with its two
+# universal filters at their neutral values (d = 0, h = 1): 288 rules each.
+# The OBV bands are in units of average one-minute volume (see sig_obv).
+_SL = [(s, l) for l in (10, 15, 20, 25, 30, 35, 40, 45, 60) for s in (2, 5, 10, 15, 20, 25, 30) if s < l]
 UNIVERSE = {
-    "MA": [(sig_ma, dict(s=s, l=l, b=b)) for s, l in ((2, 10), (5, 30), (10, 60)) for b in (0.0005, 0.001, 0.0015)],
-    "OBV": [(sig_obv, dict(s=s, l=l, b=b)) for s, l in ((2, 10), (5, 30), (10, 60)) for b in (0.25, 0.5, 1.0)],
-    "IMB": [(sig_imb, dict(k=k, theta=th)) for k in (2, 3, 5) for th in (0.3, 0.4, 0.5)],
+    "MA": [(sig_ma, dict(s=s, l=l, b=b)) for s, l in _SL for b in (0.0, 0.0005, 0.001, 0.0015, 0.0025, 0.004)],
+    "OBV": [(sig_obv, dict(s=s, l=l, b=b)) for s, l in _SL for b in (0.0, 0.1, 0.25, 0.5, 1.0, 1.5)],
+    "IMB": [(sig_imb, dict(k=k, theta=th)) for k in (1, 2, 3, 4, 5) for th in (0.1, 0.2, 0.3, 0.4, 0.5)],
 }
 
 
 # --------------------------------------------------------------------------- execution
-def simulate(day: Day, g: np.ndarray, sig: np.ndarray, delay_ms: int) -> list[tuple]:
-    """Round trips for one asset-day, as tuples (entry_ts, exit_ts, direction,
-    return, mid-to-mid return, price change per unit).
+def target_paths(f: dict, rules: list) -> np.ndarray:
+    """Position each rule wants at each interval change, shape (rules, intervals).
+    Nothing is held in the first and last 10 minutes, which forces the unwind."""
+    g = f["grid"]
+    t = np.stack([fn(f, **p) for fn, p in rules]).astype(np.int8)
+    t[:, g < g[0] + NO_TRADE] = 0
+    t[:, g >= g[-1] - NO_TRADE] = 0
+    return t
 
-    Buys lift the ask and sells hit the bid prevailing `delay_ms` after the
-    interval change that produced the signal (paper eq. 1-2)."""
-    target = sig.copy()
-    target[g < g[0] + NO_TRADE] = 0
-    target[g >= g[-1] - NO_TRADE] = 0  # forces the unwind 10 minutes before the close
-    change = np.flatnonzero(np.diff(np.r_[0, target]) != 0)
-    if not len(change):
-        return []
-    t_exec = g[change] + delay_ms * MS
-    q = asof(day.ts, t_exec)
-    bid, ask = day.bid[q], day.ask[q]
+
+def extract_trips(targets: np.ndarray) -> dict[str, np.ndarray]:
+    """Round trips and orders implied by the target paths, as flat arrays over
+    all rules. A round trip runs from the interval c0 where a position is taken
+    to the interval c1 of the next change of that rule; an order is any change
+    of position (delta = +-1, or +-2 when the rule flips side)."""
+    d = np.diff(targets.astype(np.int16), axis=1, prepend=0)
+    rule, k = np.nonzero(d)  # ordered by rule, then by time
+    pos = targets[rule, k]
+    held = np.flatnonzero(pos != 0)  # every path ends flat, so the next change is the same rule's
+    return dict(rule=rule[held], c0=k[held], c1=k[held + 1], side=pos[held].astype(float),
+                o_rule=rule, o_k=k, o_delta=d[rule, k].astype(float))
+
+
+def quotes_at(day: Day, g: np.ndarray, offsets_ms) -> tuple[np.ndarray, np.ndarray]:
+    """Best bid and ask prevailing `offset` after each interval change, shape (offsets, intervals)."""
+    t = g[None, :] + np.asarray(offsets_ms, dtype=np.int64)[:, None] * MS
+    q = asof(day.ts, t)
+    return day.bid[q], day.ask[q]
+
+
+def _by_rule(rule: np.ndarray, x: np.ndarray, n_rules: int) -> np.ndarray:
+    """Sum the rows of x (offsets, events) within each rule: shape (rules, offsets)."""
+    return np.stack([np.bincount(rule, weights=row, minlength=n_rules) for row in np.atleast_2d(x)], axis=1)
+
+
+def trip_returns(trips: dict, bid: np.ndarray, ask: np.ndarray, n_rules: int) -> np.ndarray:
+    """Sum of simple round-trip returns of each rule at each delay (paper eq. 1-2):
+    buys lift the ask and sells hit the bid prevailing after the delay."""
+    long_ = trips["side"] > 0
+    entry = np.where(long_, ask[:, trips["c0"]], bid[:, trips["c0"]])
+    exit_ = np.where(long_, bid[:, trips["c1"]], ask[:, trips["c1"]])
+    return _by_rule(trips["rule"], trips["side"] * (exit_ - entry) / entry, n_rules)
+
+
+def evaluate(trips: dict, bid: np.ndarray, ask: np.ndarray, n_rules: int) -> dict[str, np.ndarray]:
+    """Everything the P&L reports need, per rule and delay (or per rule only)."""
+    rule, side, c0, c1 = trips["rule"], trips["side"], trips["c0"], trips["c1"]
+    long_ = side > 0
+    entry = np.where(long_, ask[:, c0], bid[:, c0])
+    exit_ = np.where(long_, bid[:, c1], ask[:, c1])
     mid = (bid + ask) / 2
-    trips, pos, entry_px, entry_mid, entry_ts = [], 0, np.nan, np.nan, 0
-    for j, k in enumerate(change):
-        new = int(target[k])
-        if pos != 0:
-            exit_px = bid[j] if pos == 1 else ask[j]
-            trips.append((entry_ts, t_exec[j], pos, pos * (exit_px - entry_px) / entry_px,
-                          pos * (mid[j] - entry_mid) / entry_mid, pos * (exit_px - entry_px),
-                          pos * (mid[j] - entry_mid)))
-        if new != 0:
-            entry_px, entry_mid, entry_ts = (ask[j] if new == 1 else bid[j]), mid[j], t_exec[j]
-        pos = new
-    return trips
+    gross = side * (exit_ - entry)
+    minutes = (c1 - c0) * (INTERVAL / (60 * NS))
+    count = lambda w: np.bincount(rule, weights=w, minlength=n_rules)
+    return dict(
+        ret=_by_rule(rule, gross / entry, n_rules),
+        pnl_unit=_by_rule(rule, gross, n_rules),  # dollars per unit traded
+        pnl_mid_unit=_by_rule(rule, side * (mid[:, c1] - mid[:, c0]), n_rules),
+        n_win=_by_rule(rule, (gross > 0).astype(float), n_rules),
+        n_trips=count(np.ones(len(rule))), n_long=count(long_.astype(float)), n_short=count((~long_).astype(float)),
+        min_long=count(minutes * long_), min_short=count(minutes * ~long_),
+    )
+
+
+def order_effect(trips: dict, bid0, ask0, bid_h, ask_h, n_rules: int) -> tuple[np.ndarray, np.ndarray]:
+    """Effect of executing each order `h` later, in bps of the price, summed per
+    rule: -(price move in the direction of the order). Negative means the delay
+    hurts: the ask rose before a buy or the bid fell before a sell. A flip of
+    side counts as two orders. Returns (sum of effects (rules, horizons), orders (rules,))."""
+    k, delta = trips["o_k"], trips["o_delta"]
+    buy = delta > 0
+    p0 = np.where(buy, ask0[k], bid0[k])
+    ph = np.where(buy, ask_h[:, k], bid_h[:, k])
+    eff = -delta * (ph - p0) / p0 * 1e4  # delta carries both the direction and the size
+    return _by_rule(trips["o_rule"], eff, n_rules), np.bincount(trips["o_rule"], weights=np.abs(delta), minlength=n_rules)
 
 
 def first_day_units(day: Day) -> float:
@@ -257,28 +332,6 @@ def first_day_units(day: Day) -> float:
     t = grid(day)[0] + NO_TRADE
     i = asof(day.ts, t)
     return BOOK / ((day.bid[i] + day.ask[i]) / 2)
-
-
-def run_day(day: Day, rules: dict, delays=DELAYS_MS, units: float | None = None) -> list[dict]:
-    """Daily result of every (rule, delay). `rules` maps a label to (fn, params).
-    P&L is in dollars for `units` traded on every signal; `ret` is the paper's
-    sum of simple round-trip returns."""
-    units = first_day_units(day) if units is None else units
-    f = features(day)
-    rows = []
-    for label, (fn, params) in rules.items():
-        sig = fn(f, **params)
-        for d in delays:
-            trips = simulate(day, f["grid"], sig, d)
-            r = np.array([t[3] for t in trips])
-            dur = np.array([(t[1] - t[0]) / (60 * NS) for t in trips])
-            side = np.array([t[2] for t in trips])
-            rows.append(dict(date=day.date, rule=label, delay_ms=d, ret=r.sum(), n_trips=len(r),
-                             n_win=int((r > 0).sum()), pnl=units * sum(t[5] for t in trips),
-                             pnl_mid=units * sum(t[6] for t in trips),
-                             n_long=int((side == 1).sum()), n_short=int((side == -1).sum()),
-                             min_long=dur[side == 1].sum(), min_short=dur[side == -1].sum()))
-    return rows
 
 
 # --------------------------------------------------------------------------- diagnostics
@@ -315,44 +368,99 @@ def microstructure(day: Day, delays_ms=(100, 1000)) -> dict:
 
 
 # --------------------------------------------------------------------------- driver
-def iter_days(asset: str, _eq_cache: dict = {}):
-    """Yield the Day objects of one asset. Equity files hold both tickers, so
-    decoded days are kept in memory and reused for the second ticker."""
-    if asset == "EURUSD":
-        for d in fx_dates():
-            day = load_fx_day(d)
-            if day is not None and len(day.ts) > 1000:
-                yield day
-    else:
-        for d in equity_dates():
-            if d not in _eq_cache:
-                _eq_cache[d] = load_equity_day(d)
-            yield _eq_cache[d][asset]
+@dataclass
+class Run:
+    """Results of every rule on every asset-day. Arrays in `stats` are indexed
+    (rule, day, delay), (rule, day, horizon) or (rule, day); `rules` describes the rule axis."""
+
+    rules: pd.DataFrame  # family, kind ("baseline" / "universe"), params
+    delays: tuple
+    horizons: tuple
+    dates: dict = field(default_factory=dict)  # asset -> list of dates
+    units: dict = field(default_factory=dict)  # asset -> units traded per signal
+    stats: dict = field(default_factory=dict)  # asset -> name -> array
+    prep: dict = field(default_factory=dict)  # asset -> per day: trips and quotes, for the placebo
+    micro: pd.DataFrame | None = None
+
+    def rule_mask(self, kind: str, family: str | None = None) -> np.ndarray:
+        m = (self.rules.kind == kind).to_numpy()
+        return m & (self.rules.family == family).to_numpy() if family else m
+
+    def delay_index(self, delays) -> list[int]:
+        return [self.delays.index(d) for d in delays]
 
 
-def run_all(assets=("AAPL", "GPRO", "EURUSD"), delays=DELAYS_CURVE_MS) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Returns (daily results for every rule/config/delay, daily microstructure stats)."""
-    rules = {(fam, "baseline", str(p)): (fn, p) for fam, (fn, p) in BASELINE.items()}
-    for fam, lst in UNIVERSE.items():
-        for fn, p in lst:
-            rules[(fam, "universe", str(p))] = (fn, p)
-
-    res, micro = [], []
+def run_all(assets=ASSETS, delays=DELAYS_CURVE_MS, horizons=HORIZONS_MS) -> Run:
+    """Run the three baseline rules and the whole universe on every asset-day."""
+    spec = [(fam, "baseline", fn, p) for fam, (fn, p) in BASELINE.items()]
+    spec += [(fam, "universe", fn, p) for fam, lst in UNIVERSE.items() for fn, p in lst]
+    run = Run(rules=pd.DataFrame([(fam, kind, str(p)) for fam, kind, _, p in spec], columns=["family", "kind", "params"]),
+              delays=tuple(delays), horizons=tuple(horizons))
+    n_rules, fns = len(spec), [(fn, p) for _, _, fn, p in spec]
+    acc = {a: {} for a in assets}
+    micro = []
+    for asset, day in iter_asset_days(assets):
+        run.units.setdefault(asset, first_day_units(day))
+        run.dates.setdefault(asset, []).append(day.date)
+        f = features(day)
+        trips = extract_trips(target_paths(f, fns))
+        bid, ask = quotes_at(day, f["grid"], delays)
+        bid_h, ask_h = quotes_at(day, f["grid"], horizons)
+        out = evaluate(trips, bid, ask, n_rules)
+        out["effect"], out["n_orders"] = order_effect(trips, bid[0], ask[0], bid_h, ask_h, n_rules)
+        for name, x in out.items():
+            acc[asset].setdefault(name, []).append(x)
+        run.prep.setdefault(asset, []).append(dict(trips=trips, bid=bid, ask=ask))
+        micro.append(dict(asset=asset, units=run.units[asset], **microstructure(day)))
     for asset in assets:
-        units = None
-        for day in iter_days(asset):
-            units = first_day_units(day) if units is None else units
-            for row in run_day(day, rules, delays, units):
-                fam, kind, params = row.pop("rule")
-                res.append(dict(asset=asset, family=fam, kind=kind, params=params, **row))
-            micro.append(dict(asset=asset, units=units, **microstructure(day)))
-    return pd.DataFrame(res), pd.DataFrame(micro)
+        s = {name: np.stack(x, axis=1) for name, x in acc[asset].items()}
+        s["pnl"], s["pnl_mid"] = s.pop("pnl_unit") * run.units[asset], s.pop("pnl_mid_unit") * run.units[asset]
+        run.stats[asset] = s
+    m = pd.DataFrame(micro)
+    run.micro = pd.concat([m[m.asset == a] for a in assets], ignore_index=True)
+    return run
 
 
-# --------------------------------------------------------------------------- reporting
-def pnl_report(res: pd.DataFrame, delays=DELAYS_MS) -> pd.DataFrame:
+def baseline_frame(run: Run) -> pd.DataFrame:
+    """Tidy daily results of the nine baseline strategies: one row per asset / signal / day / delay."""
+    rows = []
+    for asset, s in run.stats.items():
+        for r in np.flatnonzero(run.rule_mask("baseline")):
+            for d, date in enumerate(run.dates[asset]):
+                for x, delay in enumerate(run.delays):
+                    rows.append(dict(
+                        asset=asset, family=run.rules.family[r], params=run.rules.params[r], date=date, delay_ms=delay,
+                        ret=s["ret"][r, d, x], n_trips=int(s["n_trips"][r, d]), n_win=int(s["n_win"][r, d, x]),
+                        pnl=s["pnl"][r, d, x], pnl_mid=s["pnl_mid"][r, d, x],
+                        n_long=int(s["n_long"][r, d]), n_short=int(s["n_short"][r, d]),
+                        min_long=s["min_long"][r, d], min_short=s["min_short"][r, d]))
+    return pd.DataFrame(rows)
+
+
+def universe_frame(run: Run, delays=DELAYS_FIG6_MS) -> pd.DataFrame:
+    """Daily return of every universe rule at the paper's delays, one row per asset / rule / day."""
+    ix, parts = run.delay_index(delays), []
+    for asset, s in run.stats.items():
+        for r in np.flatnonzero(run.rule_mask("universe")):
+            df = pd.DataFrame(s["ret"][r][:, ix], columns=[f"ret_{d}ms" for d in delays])
+            df.insert(0, "n_trips", s["n_trips"][r].astype(int))
+            df.insert(0, "date", run.dates[asset])
+            df.insert(0, "params", run.rules.params[r])
+            df.insert(0, "family", run.rules.family[r])
+            df.insert(0, "asset", asset)
+            parts.append(df)
+    return pd.concat(parts, ignore_index=True)
+
+
+# --------------------------------------------------------------------------- reporting: baseline
+def _boot_days(n_days: int, n_boot: int = 5000, seed: int = 0) -> np.ndarray:
+    """Day indices of `n_boot` bootstrap samples of the trading days."""
+    return np.random.default_rng(seed).integers(0, n_days, size=(n_boot, n_days))
+
+
+def pnl_report(base: pd.DataFrame, delays=DELAYS_MS) -> pd.DataFrame:
     """One P&L line per asset / signal / delay for the baseline rules."""
-    b = res[(res.kind == "baseline") & res.delay_ms.isin(delays)]
+    b = base[base.delay_ms.isin(delays)]
     g = b.groupby(["asset", "family", "delay_ms"], sort=False)
     out = g.agg(pnl=("pnl", "sum"), pnl_mid=("pnl_mid", "sum"), round_trips=("n_trips", "sum"), wins=("n_win", "sum"),
                 days=("date", "nunique"), best_day=("pnl", "max"), worst_day=("pnl", "min"),
@@ -365,9 +473,9 @@ def pnl_report(res: pd.DataFrame, delays=DELAYS_MS) -> pd.DataFrame:
     return out
 
 
-def holding_report(res: pd.DataFrame) -> pd.DataFrame:
+def holding_report(base: pd.DataFrame) -> pd.DataFrame:
     """Number and average duration (minutes) of long and short positions, baseline rules, no delay."""
-    b = res[(res.kind == "baseline") & (res.delay_ms == 0)]
+    b = base[base.delay_ms == 0]
     t = b.groupby(["asset", "family"], sort=False)[["n_long", "n_short", "min_long", "min_short"]].sum()
     return pd.DataFrame({
         "Average duration of long signals (min)": t.min_long / t.n_long,
@@ -377,25 +485,27 @@ def holding_report(res: pd.DataFrame) -> pd.DataFrame:
     })
 
 
-def cost_of_delay(res: pd.DataFrame, delays=(100, 1000)) -> pd.DataFrame:
+def cost_of_delay(base: pd.DataFrame, delays=(100, 1000)) -> pd.DataFrame:
     """Cost of delay of the baseline rules: total return with the delay minus total
-    return with instantaneous execution. Negative means the delay hurts."""
+    return with instantaneous execution. Negative means the delay hurts. The 90%
+    interval resamples the 20 trading days (5,000 bootstrap draws)."""
     from scipy.stats import wilcoxon
 
-    b = res[res.kind == "baseline"]
-    ret = b.pivot_table(index=["asset", "family", "date"], columns="delay_ms", values="ret", sort=False)
-    pnl = b.pivot_table(index=["asset", "family", "date"], columns="delay_ms", values="pnl", sort=False)
-    trips = b[b.delay_ms == 0].groupby(["asset", "family"], sort=False).n_trips.sum()
+    ret = base.pivot_table(index=["asset", "family", "date"], columns="delay_ms", values="ret", sort=False)
+    pnl = base.pivot_table(index=["asset", "family", "date"], columns="delay_ms", values="pnl", sort=False)
+    trips = base[base.delay_ms == 0].groupby(["asset", "family"], sort=False).n_trips.sum()
     rows = []
     for (asset, fam), d in ret.groupby(level=[0, 1], sort=False):
         p = pnl.loc[(asset, fam)]
+        draws = _boot_days(len(d))
         for dl in delays:
-            diff = d[dl] - d[0]
+            diff = (d[dl] - d[0]).to_numpy()
             nz = diff[diff != 0]
+            lo, hi = np.percentile(diff[draws].sum(axis=1), [5, 95]) * 100
             rows.append(dict(
                 asset=asset, family=fam, delay_ms=dl,
                 return_0ms_pct=d[0].sum() * 100, return_delayed_pct=d[dl].sum() * 100,
-                cost_pct=diff.sum() * 100, cost_usd=(p[dl] - p[0]).sum(),
+                cost_pct=diff.sum() * 100, ci_lo_pct=lo, ci_hi_pct=hi, cost_usd=(p[dl] - p[0]).sum(),
                 cost_bps_per_trip=diff.sum() / trips[(asset, fam)] * 1e4,
                 days_worse=int((diff < 0).sum()), days_better=int((diff > 0).sum()),
                 wilcoxon_p=wilcoxon(nz).pvalue if len(nz) >= 6 else np.nan,
@@ -403,44 +513,211 @@ def cost_of_delay(res: pd.DataFrame, delays=(100, 1000)) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def delay_curve(res: pd.DataFrame) -> pd.DataFrame:
-    """Cost of delay (%, total return with delay minus total return at 0 ms) for
-    every baseline asset/signal pair and every delay level, plus the mean across pairs."""
-    b = res[res.kind == "baseline"]
-    tot = b.groupby(["asset", "family", "delay_ms"], sort=False).ret.sum().unstack("delay_ms") * 100
+def delay_curve(base: pd.DataFrame) -> pd.DataFrame:
+    """Cost of delay (%, total return with delay minus total return at 0 ms) for every
+    baseline asset/signal pair and every delay level, plus the mean across pairs
+    with its 90% day-bootstrap interval (the same resampled days for all pairs)."""
+    tot = base.groupby(["asset", "family", "delay_ms"], sort=False).ret.sum().unstack("delay_ms") * 100
     curve = tot.sub(tot[0], axis=0).T
     curve.columns = [f"{a} | {f}" for a, f in curve.columns]
+    n_pairs = curve.shape[1]
     curve["Mean"] = curve.mean(axis=1)
+    per_day = base.groupby(["date", "delay_ms"], sort=False).ret.sum().unstack("delay_ms")  # summed over the pairs
+    diff = per_day.sub(per_day[0], axis=0)[curve.index].to_numpy() / n_pairs * 100
+    lo, hi = np.percentile(diff[_boot_days(len(diff))].sum(axis=1), [5, 95], axis=0)
+    curve["Mean lo"], curve["Mean hi"] = lo, hi
     return curve
 
 
-def importance_of_speed(res: pd.DataFrame, by=("asset",), subset: str = "all") -> pd.DataFrame:
-    """Figure 6 of the paper. Each day the average return per strategy with delay d
-    is compared with the average under instantaneous execution; the daily relative
-    differences (in %) are then averaged over days. Strategies with a zero return
-    are excluded. `subset` keeps all strategies or only those with a positive or
-    negative instantaneous return that day (the paper's Figure 7 split)."""
+def order_effect_table(run: Run, kind: str = "baseline", horizons=(100, 1000)) -> pd.DataFrame:
+    """Average effect of the delay per order (bps), by asset and signal family.
+    Orders of every rule of the family are pooled; the 90% interval resamples days."""
+    rows = []
+    for asset, s in run.stats.items():
+        draws = _boot_days(len(run.dates[asset]))
+        for fam in BASELINE:
+            m = run.rule_mask(kind, fam)
+            num, den = s["effect"][m].sum(axis=0), s["n_orders"][m].sum(axis=0)  # (days, horizons), (days,)
+            boot = num[draws].sum(axis=1) / den[draws].sum(axis=1)[:, None]
+            for h in horizons:
+                j = run.horizons.index(h)
+                lo, hi = np.percentile(boot[:, j], [5, 95])
+                rows.append(dict(asset=asset, family=fam, horizon_ms=h, orders=int(den.sum()),
+                                 effect_bps=num[:, j].sum() / den.sum(), ci_lo=lo, ci_hi=hi,
+                                 p_two_sided=min(1.0, 2 * min((boot[:, j] >= 0).mean(), (boot[:, j] <= 0).mean()))))
+    return pd.DataFrame(rows)
+
+
+# --------------------------------------------------------------------------- reporting: universe
+SUBSETS = {"all": lambda r0: r0 != 0, "positive": lambda r0: r0 > 0, "negative": lambda r0: r0 < 0}
+
+
+def speed_stat(ret: np.ndarray, subset: str = "all") -> dict:
+    """Importance of speed (paper, Figure 6 and footnote 22) from returns indexed
+    (rule, day, delay), delay 0 first. Each day the average return per rule with
+    a delay is compared with the average under instantaneous execution, among
+    the rules of the subset (non-zero, positive or negative return at 0 ms that
+    day); the daily relative differences are then averaged over days."""
+    sel = SUBSETS[subset](ret[..., 0])
+    n = sel.sum(axis=0)
+    ok = n > 0
+    if not ok.any():
+        nan = np.full(ret.shape[-1], np.nan)
+        return dict(importance=nan, median=nan, diff=np.empty((0, ret.shape[-1])), pooled=nan, n_days=0, rules_per_day=0.0)
+    mean = np.where(sel[..., None], ret, 0.0).sum(axis=0)[ok] / n[ok, None]  # (days, delays)
+    diff = mean - mean[:, :1]
+    rel = diff / np.abs(mean[:, :1]) * 100
+    return dict(importance=rel.mean(axis=0), median=np.median(rel, axis=0), diff=diff,
+                pooled=diff.sum(axis=0) / abs(mean[:, 0].sum()) * 100,
+                n_days=int(ok.sum()), rules_per_day=float(n[ok].mean()))
+
+
+def _universe_groups(run: Run, by_family: bool):
+    for asset, s in run.stats.items():
+        for fam in (list(BASELINE) if by_family else [None]):
+            yield asset, fam or "All", run.rule_mask("universe", fam), s
+
+
+def importance_of_speed(run: Run, subset: str = "all", by_family: bool = False, delays=DELAYS_FIG6_MS) -> pd.DataFrame:
+    """Figure 6 (all rules) and Figure 7 (positive / negative rules) of the paper."""
     from scipy.stats import wilcoxon
 
-    u = res[(res.kind == "universe") & res.delay_ms.isin(DELAYS_FIG6_MS)]
-    keys = list(by)
-    w = u.pivot_table(index=keys + [k for k in ("family", "params", "date") if k not in keys], columns="delay_ms", values="ret", sort=False)
-    w = w[w[0] != 0]
-    if subset == "positive":
-        w = w[w[0] > 0]
-    elif subset == "negative":
-        w = w[w[0] < 0]
-    daily = w.groupby(level=keys + ["date"], sort=False).mean()
-    rows = []
-    for key, d in daily.groupby(level=keys, sort=False):
-        key = key if isinstance(key, tuple) else (key,)
-        for dl in [c for c in d.columns if c != 0]:
-            rel = (d[dl] - d[0]) / d[0].abs() * 100
-            diff = (d[dl] - d[0])
-            nz = diff[diff != 0]
-            rows.append(dict(zip(keys, key), delay_ms=dl, importance_pct=rel.mean(),
-                             median_pct=rel.median(),
-                             pooled_pct=diff.sum() / abs(d[0].sum()) * 100,
-                             diff_bps_per_day=diff.mean() * 1e4, n_days=len(d),
+    ix, rows = run.delay_index(delays), []
+    for asset, fam, m, s in _universe_groups(run, by_family):
+        st = speed_stat(s["ret"][m][:, :, ix], subset)
+        for j, dl in enumerate(delays[1:], start=1):
+            nz = st["diff"][:, j][st["diff"][:, j] != 0]
+            rows.append(dict(asset=asset, family=fam, subset=subset, delay_ms=dl, importance_pct=st["importance"][j],
+                             median_pct=st["median"][j], pooled_pct=st["pooled"][j],
+                             diff_bps_per_day=st["diff"][:, j].mean() * 1e4, n_days=st["n_days"],
+                             rules_per_day=st["rules_per_day"],
                              wilcoxon_p=wilcoxon(nz).pvalue if len(nz) >= 6 else np.nan))
     return pd.DataFrame(rows)
+
+
+def placebo(run: Run, n_draws: int = 1000, seed: int = 0, delays=DELAYS_FIG6_MS, by_family: bool = False) -> pd.DataFrame:
+    """Selection bias, as in section 4 of the paper. Each draw applies the signals
+    generated on a day to the prices of another, randomly chosen day: the rules
+    keep their number of trades and holding times but carry no information.
+    Splitting those random rules into winners and losers and measuring the
+    importance of speed on each group gives what selection alone produces.
+
+    Reported per asset and subset (and per signal family if `by_family`, which is
+    noisy for the small families): the actual importance of speed, the mean and
+    the 5th-95th percentiles over the draws, and the share of draws at or below
+    the actual value (one-sided p-value for 'delay hurts more than selection alone')."""
+    rng = np.random.default_rng(seed)
+    ix = run.delay_index(delays)
+    n_rules, uni = len(run.rules), run.rule_mask("universe")
+    groups = {"All": uni}
+    if by_family:
+        groups.update({fam: run.rule_mask("universe", fam) for fam in BASELINE})
+    rows = []
+    for asset, s in run.stats.items():
+        prep, n_days = run.prep[asset], len(run.dates[asset])
+        sims = {(g, sub): [] for g in groups for sub in SUBSETS}
+        for _ in range(n_draws):
+            perm = rng.permutation(n_days)
+            while (perm == np.arange(n_days)).any():  # every day gets another day's signals
+                perm = rng.permutation(n_days)
+            ret = np.stack([trip_returns(prep[src]["trips"], prep[d]["bid"][ix], prep[d]["ask"][ix], n_rules)
+                            for d, src in enumerate(perm)], axis=1)
+            for (g, sub), acc in sims.items():
+                acc.append(speed_stat(ret[groups[g]], sub)["importance"])
+        for (g, sub), acc in sims.items():
+            sim = np.array(acc)
+            actual = speed_stat(s["ret"][groups[g]][:, :, ix], sub)["importance"]
+            for j, dl in enumerate(delays[1:], start=1):
+                rows.append(dict(asset=asset, family=g, subset=sub, delay_ms=dl, actual_pct=actual[j],
+                                 bias_pct=sim[:, j].mean(), bias_lo_pct=np.percentile(sim[:, j], 5),
+                                 bias_hi_pct=np.percentile(sim[:, j], 95),
+                                 p_below=(sim[:, j] <= actual[j]).mean(), draws=n_draws))
+    return pd.DataFrame(rows)
+
+
+def response_curve(run: Run, kind: str = "universe") -> pd.DataFrame:
+    """Average effect of executing an order h later (bps per order), by asset and
+    signal family, for every horizon, with a 90% day-bootstrap interval."""
+    rows = []
+    for asset, s in run.stats.items():
+        draws = _boot_days(len(run.dates[asset]))
+        for fam in BASELINE:
+            m = run.rule_mask(kind, fam)
+            num, den = s["effect"][m].sum(axis=0), s["n_orders"][m].sum(axis=0)
+            boot = num[draws].sum(axis=1) / den[draws].sum(axis=1)[:, None]
+            lo, hi = np.percentile(boot, [5, 95], axis=0)
+            for j, h in enumerate(run.horizons):
+                rows.append(dict(asset=asset, family=fam, horizon_ms=h, orders=int(den.sum()),
+                                 effect_bps=num[:, j].sum() / den.sum(), ci_lo=lo[j], ci_hi=hi[j]))
+    return pd.DataFrame(rows)
+
+
+def daily_universe(run: Run) -> pd.DataFrame:
+    """Per asset-day: average return of the universe rules that traded, signed cost of
+    a 100 ms and 1 s delay (bps per rule-day, negative = delay hurts), mean absolute
+    effect of the delay per round trip, joined with the day's microstructure."""
+    i100, i1000 = run.delays.index(100), run.delays.index(1000)
+    parts = []
+    for asset, s in run.stats.items():
+        uni = run.rule_mask("universe")
+        r, trips = s["ret"][uni], s["n_trips"][uni]
+        on = r[..., 0] != 0
+        n = on.sum(axis=0)
+        avg = lambda x: np.where(on, x, 0.0).sum(axis=0) / n * 1e4
+        parts.append(pd.DataFrame(dict(
+            asset=asset, date=run.dates[asset], rules_trading=n,
+            ret0_bps=avg(r[..., 0]), cost100_bps=avg(r[..., i100] - r[..., 0]), cost1000_bps=avg(r[..., i1000] - r[..., 0]),
+            abs100_bps=np.abs(r[..., i100] - r[..., 0]).sum(axis=0) / trips.sum(axis=0) * 1e4,
+            abs1000_bps=np.abs(r[..., i1000] - r[..., 0]).sum(axis=0) / trips.sum(axis=0) * 1e4)))
+    daily = pd.concat(parts, ignore_index=True).merge(run.micro, on=["asset", "date"])
+    daily["vol_regime"] = daily.groupby("asset", sort=False).vol_1min_bps.transform(
+        lambda x: np.where(x > x.median(), "high vol", "low vol"))
+    return daily
+
+
+def regime_by_signal(run: Run, daily: pd.DataFrame) -> pd.DataFrame:
+    """Return at 0 ms and cost of a 1 s delay by asset, signal family and volatility
+    regime: bps per rule-day over the universe rules that traded, plus the effect
+    of the delay per order."""
+    i1000, h1000 = run.delays.index(1000), run.horizons.index(1000)
+    rows = []
+    for asset, s in run.stats.items():
+        regime = daily[daily.asset == asset].set_index("date").vol_regime.reindex(run.dates[asset]).to_numpy()
+        for fam in BASELINE:
+            m = run.rule_mask("universe", fam)
+            r, eff, n_ord = s["ret"][m], s["effect"][m], s["n_orders"][m]
+            for reg in ("high vol", "low vol"):
+                d = regime == reg
+                on = r[:, d, 0] != 0
+                rows.append(dict(
+                    asset=asset, family=fam, vol_regime=reg, days=int(d.sum()), rule_days=int(on.sum()),
+                    ret0_bps=r[:, d, 0][on].mean() * 1e4,
+                    cost1000_bps=(r[:, d, i1000] - r[:, d, 0])[on].mean() * 1e4,
+                    effect_per_order_1s_bps=eff[:, d, h1000].sum() / n_ord[:, d].sum()))
+    return pd.DataFrame(rows)
+
+
+def family_table(run: Run) -> pd.DataFrame:
+    """Universe rules by asset and signal family: return at 0 ms and signed cost of a
+    100 ms and 1 s delay, in bps per rule-day over the rules that traded."""
+    i100, i1000 = run.delays.index(100), run.delays.index(1000)
+    rows = []
+    for asset, s in run.stats.items():
+        for fam in BASELINE:
+            r = s["ret"][run.rule_mask("universe", fam)]
+            on = r[..., 0] != 0
+            rows.append(dict(asset=asset, family=fam, rules=len(r), rule_days=int(on.sum()),
+                             trips_per_rule_day=s["n_trips"][run.rule_mask("universe", fam)][on].mean(),
+                             ret0_bps=r[..., 0][on].mean() * 1e4,
+                             cost100_bps=(r[..., i100] - r[..., 0])[on].mean() * 1e4,
+                             cost1000_bps=(r[..., i1000] - r[..., 0])[on].mean() * 1e4))
+    return pd.DataFrame(rows)
+
+
+def capacity_table(run: Run) -> pd.DataFrame:
+    """Size of the $1,000,000 order against the size displayed at the best quote.
+    Dukascopy sizes are in millions of euros; equity sizes are in shares."""
+    m = run.micro.groupby("asset", sort=False)[["mid", "depth", "units"]].mean()
+    depth_units = np.where(m.index == "EURUSD", m.depth * 1e6, m.depth)
+    return pd.DataFrame({"Units per order": m.units, "Displayed size at the best quote (units)": depth_units,
+                         "Displayed size ($)": depth_units * m.mid, "Order / displayed size": m.units / depth_units})
