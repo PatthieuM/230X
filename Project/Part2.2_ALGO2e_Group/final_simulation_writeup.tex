@@ -25,7 +25,7 @@
 \textbf{Final P\&L:} \$2,064,738.33 \quad\textbar\quad
 \textbf{Fines:} \$0.00
 
-\section{What was our strategy going in?}
+\section{(a) What was our strategy going in?}
 
 The case is built for market making: post a bid and an ask on CNR, RY and AC,
 earn the spread plus the limit-order rebate, and keep inventory small. We had
@@ -55,7 +55,67 @@ liquidity taker} (\texttt{last\_simulation.py}):
         under 500 shares are skipped so small rebalances don't eat the edge.
 \end{itemize}
 
-\section{What happened during the simulation? Size strategy and script}
+\section{(b) What changes did we make to handle multiple securities and fees/rebates?}
+
+\textbf{What we saw in practice.} In the practice simulations, prices were
+repeatedly pushed hard in one direction: large, persistent run-ups that looked like
+market manipulation, on all three stocks and not always at the same time. Our first
+multi-stock engine was a market maker, and with three stocks it had three times as
+many ways to be run over: on each stock, the quote that filled was the one on the
+losing side of the push. So instead of one strategy for the whole book, we ran the
+same momentum logic \emph{separately on each asset}.
+
+\textbf{Handling three securities.}
+\begin{itemize}[leftmargin=1.4em, itemsep=0.2em]
+  \item \textbf{One signal per stock.} Every second, the script updates a 3-tick and
+        a 12-tick EMA of each stock's own midquote, and measures the trend in ticks
+        of that stock. A push on CNR says nothing about AC, so each stock enters,
+        holds and exits on its own.
+  \item \textbf{Separate state per stock.} Target position, stop-loss (4 ticks per
+        share, then 5\,s out of that stock) and order pacing (0.3\,s between orders
+        on the same stock, because RIT reports positions with a lag) are all
+        tracked per ticker.
+  \item \textbf{One shared position budget.} The 25,000-share limit applies to the
+        gross position across all three stocks, so each stock is capped at 7,000
+        shares: $3 \times 7{,}000 = 21{,}000 < 25{,}000$ even if all three trend at
+        once, which is what happened in the final. The script refuses to start if
+        the per-stock cap times the number of stocks exceeds 24,000.
+  \item \textbf{Portfolio-level controls.} The drawdown breaker watches the total
+        P\&L of the three stocks (\$1,500 below its peak $\Rightarrow$ flatten
+        everything, pause 30\,s), and all three are flattened in the last 5 ticks.
+\end{itemize}
+
+\textbf{Handling fees and rebates.} Each stock has its own fee schedule
+(\$ per share):
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Ticker & Market order (take) & Limit order (provide) & Structure \\
+\midrule
+CNR & pay 0.0027 & earn 0.0023 & maker-taker \\
+RY  & earn 0.0014 & pay 0.0020 & inverted \\
+AC  & pay 0.0015 & earn 0.0011 & maker-taker \\
+\bottomrule
+\end{tabular}
+\end{table}
+A market maker would have to treat each stock differently (on RY, every passive
+fill \emph{costs} money). A momentum taker only pays the taker fee, at most
+0.27\,¢ per share on CNR, and is paid 0.14\,¢ per share on RY. We gave up the
+rebates entirely: at 0.11--0.23\,¢ per share, they are small next to the
+several-cent inventory losses a market maker took on each push. Because the fees
+are small next to the 1-tick (1\,¢) entry gate, we kept one set of rules for all
+three stocks and controlled fees through trading frequency instead:
+\begin{itemize}[leftmargin=1.4em, itemsep=0.2em]
+  \item \textbf{Hysteresis:} enter at $|\text{trend}| \ge 1$ tick, exit at
+        $|\text{trend}| \le 0.3$ tick, hold in between, so the bot doesn't flip
+        around zero and pay the fee on every flip;
+  \item \textbf{Minimum adjustment:} changes under 500 shares are skipped, so small
+        rebalances don't pay fees for nothing.
+\end{itemize}
+
+\section{(c) What happened during the simulation? Size strategy and script}
 
 \textbf{Ticks 0--210: slow bleed.} For most of the session prices were mostly
 noise around a level, with few lasting trends. A 3/12-tick EMA crossover lags by
@@ -162,7 +222,7 @@ book that let us ride the push up would have filled our exits at extreme prices 
 we had been on the wrong side. The 5,000-share order cap and the 0.3\,s gap between
 orders limited how far a single order could walk the book.
 
-\section{What was our P\&L?}
+\section{(d) What was our P\&L?}
 
 \begin{table}[H]
 \centering

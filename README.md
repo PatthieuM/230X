@@ -54,19 +54,8 @@ Part 2 is individual. Each team member's write-up and trading script are in `HW3
 
 ## Final Project
 
-`Project/` contains the initial setup for the execution-speed project:
+Everything is in `Project/`, one folder per section of the assignment (see `Project/README.md`):
 
-- the project instructions and Scholtus and van Dijk reference paper;
-- Nasdaq TotalView-ITCH MBP-1 data for AAPL and GPRO;
-- 20 daily files covering September 2019;
-- Databento metadata and integrity manifests.
-
-The equity files include all trades and best-bid/best-offer updates needed to simulate execution delays of 0 ms, 100 ms, and 1 second. Full-month EUR/USD data still needs to be added.
-
-## Final RIT Simulation (ALGO2e)
-
-`Project/FinalSimulation/` contains the group write-up of the final RIT simulation (Algorithmic Market Making: Extensions, CNR/RY/AC):
-
-- `final_simulation_writeup.pdf` and its LaTeX source;
-- `last_simulation.py`, the momentum liquidity-taker algorithm that was run (`python last_simulation.py --key <API_KEY>`);
-- the RIT P&L screenshots used in the write-up (final P&L $2,064,738.33, no fines).
+- `Project/Part1_Speed/`: Part 1, the cost of execution delay (AAPL, GPRO, EUR/USD; notebook, code, data and outputs);
+- `Project/Part2.1_ALGO2_Individual/`: Part 2.1, each team member's RIT ALGO2 write-up and script;
+- `Project/Part2.2_ALGO2e_Group/`: Part 2.2, the group RIT ALGO2e write-up (final P&L $2,064,738.33, no fines) and `last_simulation.py`.

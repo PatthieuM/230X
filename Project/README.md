@@ -1,6 +1,33 @@
 # MFE 230X Final Project
 
-## Part 1: Speed
+The assignment is in `instructions/MFE230X_project_2026.pdf`, and the paper Part 1 follows is in `references/`. Each section of the assignment has its own folder:
+
+| Section | What it asks | Folder | Main deliverable |
+|---|---|---|---|
+| 1. Speed (group) | Three signals on two equities and one FX pair, with 0 ms / 100 ms / 1 s execution delays, and the cost of delay | [`Part1_Speed/`](Part1_Speed/) | `MFE230X_project_speed.ipynb` |
+| 2.1 ALGO2 (individual) | Questions (a)–(f) on the RIT ALGO2 market-making case, one write-up per team member | [`Part2.1_ALGO2_Individual/`](Part2.1_ALGO2_Individual/) | `<name>/RIT_ALGO2_Writeup_<name>.md` |
+| 2.2 ALGO2e (group) | Questions (a)–(d) on the RIT ALGO2e case (CNR, RY, AC) | [`Part2.2_ALGO2e_Group/`](Part2.2_ALGO2e_Group/) | `final_simulation_writeup.pdf` |
+
+```
+Project/
+├── instructions/                 assignment PDF
+├── references/                   Scholtus and van Dijk (2012)
+├── Part1_Speed/
+│   ├── MFE230X_project_speed.ipynb
+│   ├── src/                      speed.py, download_fx.py
+│   ├── data/                     equity (Databento) and EUR/USD (Dukascopy) ticks
+│   └── outputs/                  tables (CSV) and figures/
+├── Part2.1_ALGO2_Individual/
+│   ├── Alex/
+│   ├── Elouan/
+│   └── Jean/
+└── Part2.2_ALGO2e_Group/
+    ├── final_simulation_writeup.pdf / .tex
+    ├── last_simulation.py
+    └── pnl_*.png
+```
+
+## Part 1: Speed (`Part1_Speed/`)
 
 Study of the cost of execution delay for three trading signals, after Scholtus and van Dijk (2012).
 
@@ -17,17 +44,19 @@ Study of the cost of execution delay for three trading signals, after Scholtus a
 
 ### Layout
 
+Paths are relative to `Part1_Speed/`.
+
 - `MFE230X_project_speed.ipynb`: analysis and write-up.
 - `src/speed.py`: data loaders, signals, delayed-execution simulator, reporting.
 - `src/download_fx.py`: downloads the EUR/USD ticks.
 - `outputs/`: tables (CSV) and `outputs/figures/` (PNG) written by the notebook.
 - `data/equities/databento/mbp-1/`: Nasdaq TotalView-ITCH MBP-1 for AAPL and GPRO, one DBN/zstd file per trading day (every trade and every change of the best bid and offer).
 - `data/fx/dukascopy/EURUSD/`: Dukascopy EUR/USD ticks (best bid/ask and quoted sizes, millisecond stamps), one `.bi5` file per UTC hour, 12:00 to 21:00 UTC on weekdays.
-- `instructions/`, `references/`: assignment and paper.
 
 ### Reproduce
 
 ```bash
+cd Part1_Speed
 pip install databento jupyter matplotlib numpy pandas scipy
 jupyter nbconvert --to notebook --execute --inplace MFE230X_project_speed.ipynb
 ```
@@ -47,15 +76,17 @@ The data are in the repository; the notebook runs in about one minute.
 - MBP-1 has the top of book only: orders are assumed to fill in full at the best quote.
 - No FX trade tape: OBV on EUR/USD uses tick volume.
 
-## Part 2: RIT simulation
+## Part 2.1: ALGO2, individual (`Part2.1_ALGO2_Individual/`)
 
-ALGO2 (2.1) is individual. Each team member's ALGO2 write-up and trading script are in `RIT Individual/<name>/`:
+Each team member's ALGO2 write-up and trading script are in `Part2.1_ALGO2_Individual/<name>/`:
 
 - `Alex/`: `RIT_ALGO2_Writeup_Alex.md`, `algo2_exploitative.py` (the market maker run in the graded case) and the RIT screenshot of the graded case in `figures/`.
 - `Jean/`: `RIT_ALGO2_Writeup_Jean.md` (also as `RIT_ALGO2_Writeup_Jean.pdf`), `algo2_mm.py` and the charts in `figures/`.
 - `Elouan/`: `RIT_ALGO2_Writeup_Elouan.md`, `algo2_momentum.py` (the momentum taker), `algo2_market_making.py` (the first, passive version) and the ALGO2e scripts in `algo2e/`.
 
-ALGO2e (2.2) is the group case. `FinalSimulation/` contains the group write-up (Algorithmic Market Making: Extensions, CNR/RY/AC):
+## Part 2.2: ALGO2e, group (`Part2.2_ALGO2e_Group/`)
+
+The group write-up of the final RIT simulation (Algorithmic Market Making: Extensions, CNR/RY/AC), answering questions (a)–(d):
 
 - `final_simulation_writeup.pdf` and its LaTeX source;
 - `last_simulation.py`, the momentum liquidity-taker algorithm that was run (`python last_simulation.py --key <API_KEY>`);
