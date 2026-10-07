@@ -15,7 +15,7 @@ Project/
 ├── Part1_Speed/
 │   ├── MFE230X_project_speed.ipynb
 │   ├── report/                   speed_report.pdf / .tex, tables/, figures/
-│   ├── src/                      speed.py, report_tables.py, download_fx.py
+│   ├── src/                      speed.py, report_assets.py, download_fx.py
 │   ├── data/                     equity (Databento) and EUR/USD (Dukascopy) ticks
 │   └── outputs/                  tables (CSV) and figures/
 ├── Part2.1_ALGO2_Individual/
@@ -51,7 +51,7 @@ Paths are relative to `Part1_Speed/`.
 - `MFE230X_project_speed.ipynb`: analysis and write-up.
 - `report/speed_report.pdf` and `report/speed_report.tex`: the written report and its source; `report/tables/` and `report/figures/` are generated.
 - `src/speed.py`: data loaders, signals, delayed-execution simulator, random-rule (selection-bias) test, reporting.
-- `src/report_tables.py`: writes the LaTeX tables of the report from `outputs/`.
+- `src/report_assets.py`: writes the LaTeX tables and the vector figures of the report from `outputs/`.
 - `src/download_fx.py`: downloads the EUR/USD ticks.
 - `outputs/`: tables (CSV) and `outputs/figures/` (PNG) written by the notebook.
 - `data/equities/databento/mbp-1/`: Nasdaq TotalView-ITCH MBP-1 for AAPL and GPRO, one DBN/zstd file per trading day (every trade and every change of the best bid and offer).
@@ -63,7 +63,7 @@ Paths are relative to `Part1_Speed/`.
 cd Part1_Speed
 pip install databento jupyter matplotlib numpy pandas scipy
 jupyter nbconvert --to notebook --execute --inplace MFE230X_project_speed.ipynb
-python src/report_tables.py
+python src/report_assets.py
 ```
 
 The data are in the repository; the notebook runs in about two minutes (5,000 random reassignments for the selection-bias test).
