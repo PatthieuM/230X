@@ -20,7 +20,8 @@ Project/
 ├── Part2.1_ALGO2_Individual/
 │   ├── Alex/
 │   ├── Elouan/
-│   └── Jean/
+│   ├── Jean/
+│   └── Matthieu/
 └── Part2.2_ALGO2e_Group/
     ├── final_simulation_writeup.pdf / .tex
     ├── last_simulation.py
@@ -81,6 +82,7 @@ The data are in the repository; the notebook runs in about one minute.
 Each team member's ALGO2 write-up and trading script are in `Part2.1_ALGO2_Individual/<name>/`:
 
 - `Alex/`: `RIT_ALGO2_Writeup_Alex.md`, `algo2_exploitative.py` (the market maker run in the graded case) and the RIT screenshot of the graded case in `figures/`.
+- `Matthieu/`: `RIT_ALGO2_Writeup_Matthieu.md`, `algo2_market_maker.py` and the ALGO2e script `algo2e/algo2e_hybrid.py`.
 - `Jean/`: `RIT_ALGO2_Writeup_Jean.md` (also as `RIT_ALGO2_Writeup_Jean.pdf`), `algo2_mm.py` and the charts in `figures/`.
 - `Elouan/`: `RIT_ALGO2_Writeup_Elouan.md`, `algo2_momentum.py` (the momentum taker), `algo2_market_making.py` (the first, passive version) and the ALGO2e scripts in `algo2e/`.
 
