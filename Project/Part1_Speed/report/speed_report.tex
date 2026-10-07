@@ -23,9 +23,9 @@
 \vspace{-1em}
 
 \noindent\textbf{Assets:} AAPL, GPRO, EUR/USD \quad\textbar\quad
-\textbf{Period:} September 2019, 20 trading days \quad\textbar\quad
-\textbf{Delays:} 0 ms, 100 ms, 1 s \\
-\textbf{Signals:} moving average and on-balance volume (paper), persistent quote imbalance (ours) \quad\textbar\quad
+\textbf{Period:} September 2019, 20 trading days \\
+\textbf{Signals:} moving average and on-balance volume (paper), persistent quote imbalance (ours) \\
+\textbf{Delays:} 0 ms, 100 ms, 1 s \quad\textbar\quad
 \textbf{Book:} \$1{,}000{,}000
 
 \section{Summary}
@@ -209,8 +209,7 @@ paper and use many rules: every combination of its 60-second grid for MA and OBV
 
 \begin{table}[H]
   \centering
-  \small
-  \input{tables/pnl27}
+  \resizebox{\textwidth}{!}{\input{tables/pnl27}}
   \caption{The 27 profit-and-loss reports. Total return is the sum of the simple
   round-trip returns; P\&L is in dollars for the fixed number of units.}
   \label{tab:pnl}
@@ -263,8 +262,7 @@ range from 0 to 1{,}000 ms.
 
 \begin{table}[H]
   \centering
-  \small
-  \input{tables/cost_baseline}
+  \resizebox{\textwidth}{!}{\input{tables/cost_baseline}}
   \caption{Cost of delay of the nine strategies: total return with the delay minus
   total return at 0 ms, in percentage points. Negative means the delay hurts. The
   Wilcoxon test is not reported when fewer than six days differ.}

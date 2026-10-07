@@ -4,7 +4,7 @@ The assignment is in `instructions/MFE230X_project_2026.pdf`, and the paper Part
 
 | Section | What it asks | Folder | Main deliverable |
 |---|---|---|---|
-| 1. Speed (group) | Three signals on two equities and one FX pair, with 0 ms / 100 ms / 1 s execution delays, and the cost of delay | [`Part1_Speed/`](Part1_Speed/) | `report/speed_report.tex` (written report) and `MFE230X_project_speed.ipynb` |
+| 1. Speed (group) | Three signals on two equities and one FX pair, with 0 ms / 100 ms / 1 s execution delays, and the cost of delay | [`Part1_Speed/`](Part1_Speed/) | `report/speed_report.pdf` (written report) and `MFE230X_project_speed.ipynb` |
 | 2.1 ALGO2 (individual) | Questions (a)–(f) on the RIT ALGO2 market-making case, one write-up per team member | [`Part2.1_ALGO2_Individual/`](Part2.1_ALGO2_Individual/) | `<name>/RIT_ALGO2_Writeup_<name>.md` |
 | 2.2 ALGO2e (group) | Questions (a)–(d) on the RIT ALGO2e case (CNR, RY, AC) | [`Part2.2_ALGO2e_Group/`](Part2.2_ALGO2e_Group/) | `final_simulation_writeup.pdf` |
 
@@ -14,7 +14,7 @@ Project/
 ├── references/                   Scholtus and van Dijk (2012)
 ├── Part1_Speed/
 │   ├── MFE230X_project_speed.ipynb
-│   ├── report/                   speed_report.tex, tables/, figures/
+│   ├── report/                   speed_report.pdf / .tex, tables/, figures/
 │   ├── src/                      speed.py, report_tables.py, download_fx.py
 │   ├── data/                     equity (Databento) and EUR/USD (Dukascopy) ticks
 │   └── outputs/                  tables (CSV) and figures/
@@ -42,14 +42,14 @@ Study of the cost of execution delay for three trading signals, after Scholtus a
 | Book | $1,000,000: every trade is for the units worth $1,000,000 on the first day, at the prevailing best bid/ask |
 | Trading window | 09:40 to 15:50 New York time, book closed daily at 15:50 |
 
-**Deliverables:** the written report `report/speed_report.tex` (LaTeX, compiled in Overleaf with its `tables/` and `figures/`) and the executed notebook `MFE230X_project_speed.ipynb` behind it: the 27 P&L reports, holding times, the cost of delay, the replication of Figures 6 and 7 of the paper with its selection-bias test, and the discussion. Both follow the instructions of Discussion Session 06.
+**Deliverables:** the written report `report/speed_report.pdf` (LaTeX source `report/speed_report.tex`, with its generated `tables/` and `figures/`) and the executed notebook `MFE230X_project_speed.ipynb` behind it: the 27 P&L reports, holding times, the cost of delay, the replication of Figures 6 and 7 of the paper with its selection-bias test, and the discussion. Both follow the instructions of Discussion Session 06.
 
 ### Layout
 
 Paths are relative to `Part1_Speed/`.
 
 - `MFE230X_project_speed.ipynb`: analysis and write-up.
-- `report/speed_report.tex`: the written report; `report/tables/` and `report/figures/` are generated.
+- `report/speed_report.pdf` and `report/speed_report.tex`: the written report and its source; `report/tables/` and `report/figures/` are generated.
 - `src/speed.py`: data loaders, signals, delayed-execution simulator, random-rule (selection-bias) test, reporting.
 - `src/report_tables.py`: writes the LaTeX tables of the report from `outputs/`.
 - `src/download_fx.py`: downloads the EUR/USD ticks.

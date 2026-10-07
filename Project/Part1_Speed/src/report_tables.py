@@ -163,7 +163,7 @@ def main() -> None:
     cmp.index = cmp.index.astype(int)
     rows = [[num(d, 0), *[star(cmp.loc[d, c]) for c in cmp.columns]] for d in cmp.index]
     write("paper", "rrrrrrr",
-          [" & \\multicolumn{3}{c}{Paper, January to September 2009} & \\multicolumn{3}{c}{This project, September 2019} \\\\",
+          [" & \\multicolumn{3}{c}{Paper, Jan--Sep 2009} & \\multicolumn{3}{c}{This project, Sep 2019} \\\\",
            "\\cmidrule(lr){2-4}\\cmidrule(lr){5-7}", "Delay (ms) & SPY & QQQQ & IWM & AAPL & GPRO & EUR/USD \\\\"], rows)
 
     # ---- effect of the delay per order, universe
