@@ -49,8 +49,14 @@ The data are in the repository; the notebook runs in about one minute.
 
 ## Part 2: RIT simulation
 
-Part 2 is individual. Each team member's ALGO2 write-up and trading script are in `RIT Individual/<name>/`:
+ALGO2 (2.1) is individual. Each team member's ALGO2 write-up and trading script are in `RIT Individual/<name>/`:
 
 - `Alex/`: `RIT_ALGO2_Writeup_Alex.md`, `algo2_exploitative.py` (the market maker run in the graded case) and the RIT screenshot of the graded case in `figures/`.
 - `Jean/`: `RIT_ALGO2_Writeup_Jean.md` (also as `RIT_ALGO2_Writeup_Jean.pdf`), `algo2_mm.py` and the charts in `figures/`.
 - `Elouan/`: `RIT_ALGO2_Writeup_Elouan.md`, `algo2_momentum.py` (the momentum taker), `algo2_market_making.py` (the first, passive version) and the ALGO2e scripts in `algo2e/`.
+
+ALGO2e (2.2) is the group case. `FinalSimulation/` contains the group write-up (Algorithmic Market Making: Extensions, CNR/RY/AC):
+
+- `final_simulation_writeup.pdf` and its LaTeX source;
+- `last_simulation.py`, the momentum liquidity-taker algorithm that was run (`python last_simulation.py --key <API_KEY>`);
+- the RIT P&L screenshots used in the write-up (final P&L $2,064,738.33, no fines).

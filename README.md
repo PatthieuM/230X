@@ -65,7 +65,7 @@ The equity files include all trades and best-bid/best-offer updates needed to si
 
 ## Final RIT Simulation (ALGO2e)
 
-`FinalSimulation/` contains the group write-up of the final RIT simulation (Algorithmic Market Making: Extensions, CNR/RY/AC):
+`Project/FinalSimulation/` contains the group write-up of the final RIT simulation (Algorithmic Market Making: Extensions, CNR/RY/AC):
 
 - `final_simulation_writeup.pdf` and its LaTeX source;
 - `last_simulation.py`, the momentum liquidity-taker algorithm that was run (`python last_simulation.py --key <API_KEY>`);
